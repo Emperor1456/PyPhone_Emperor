@@ -122,12 +122,12 @@ GitHub no longer accepts your password for Git operations from the terminal. You
 5.3. Create a New Repository
 
 · On GitHub, tap the + icon (top right) → New repository.
-· Give it a name, for example my-python-journey.
+· Give it a name, for example PyPhone_Emperor.
 · Choose Public (or Private if you prefer).
 · Do not check “Add a README” – we will push our own files.
 · Tap Create repository.
 · After creation, copy the repository URL. It will look like:
-    https://github.com/your-username/my-python-journey.git
+    https://github.com/your-username/PyPhone_Emperor.git
 
 ---
 
@@ -159,7 +159,7 @@ After that, Git will remember it.
 
 7. Create Your Project Folder & Link to GitHub
 
-Choose a location for your Python projects. We’ll use the phone’s Download folder because it’s easy to access from both Acode and Termux.
+We’ll use the phone’s Download folder because it’s easy to access from both Acode and Termux.
 
 In Termux, navigate to your shared storage:
 
@@ -167,11 +167,11 @@ In Termux, navigate to your shared storage:
 cd /storage/emulated/0/Download
 ```
 
-Create a new folder for your Python course and enter it:
+Create the folder that will hold your Python course and enter it:
 
 ```bash
-mkdir my-python-course
-cd my-python-course
+mkdir PyPhone_Emperor
+cd PyPhone_Emperor
 ```
 
 Initialize a Git repository:
@@ -183,7 +183,7 @@ git init
 Add your GitHub remote (replace the URL with the one you copied from step 5.3):
 
 ```bash
-git remote add origin https://github.com/your-username/my-python-journey.git
+git remote add origin https://github.com/your-username/PyPhone_Emperor.git
 ```
 
 Now your local folder is connected to GitHub. We’ll push the first file in the next section.
@@ -198,7 +198,7 @@ This is the cycle you’ll repeat every single day.
 
 · Open Acode.
 · Tap the folder icon (top left) and navigate to:
-    Internal Storage → Download → my-python-course
+    Internal Storage → Download → PyPhone_Emperor
 · Tap the + button to create a new file (e.g., lesson01.py).
 · Type your Python code.
 · Save the file (checkmark icon).
@@ -208,7 +208,7 @@ This is the cycle you’ll repeat every single day.
 · Switch back to Termux.
 · Ensure you’re in the correct folder:
   ```bash
-  cd /storage/emulated/0/Download/my-python-course
+  cd /storage/emulated/0/Download/PyPhone_Emperor
   ```
 · Run your file with:
   ```bash
@@ -241,9 +241,9 @@ DeepSeek is a powerful, free AI assistant you can use for guided Python learning
 
 9.1. Get the AI Prompt
 
-Inside the PyPhone repository (or any source), you’ll find a file called Python_Curriculum_[Ai_Prompt].md. This file contains a complete prompt that transforms the AI into a two‑bricks‑at‑a‑time Python teacher.
+Inside your PyPhone_Emperor folder, you’ll find the file 02.PyPhone SYLLABUS/PyPhone_Curriculum[Ai_Prompt].md. This file contains a complete prompt that transforms the AI into a two‑bricks‑at‑a‑time Python teacher.
 
-· Open that file in Acode or any text viewer and copy the entire content.
+· Open that file in Acode and copy the entire content.
 
 9.2. Start a New Conversation
 
@@ -284,7 +284,7 @@ Git doesn’t trust the folder because of Android’s storage permissions.
 Run the command it suggests:
 
 ```bash
-git config --global --add safe.directory /storage/emulated/0/Download/my-python-course
+git config --global --add safe.directory /storage/emulated/0/Download/PyPhone_Emperor
 ```
 
 11.3. remote: Repository not found
@@ -323,10 +323,10 @@ If that works, you can create an alias or just stick to python3.
 
 · Start with Lesson 01 of your Python curriculum. Open the corresponding .py file (or create it) and follow the AI mentor’s instructions.
 · After each lesson, commit and push.
-· As you progress, explore the README.md, Python_Curriculum.md, and GETTING_STARTED.md files in the PyPhone repo for a full overview.
+· As you progress, explore the README.md, GETTING_STARTED.md, and the syllabus file inside 02.PyPhone SYLLABUS/ for a full overview.
 · Join the open‑source community around the course: open issues, share your progress, and help others who are just starting.
 
 ---
 
 You now have everything a beginner needs – no laptop required.
-Stay consistent. Stay sovereign. Start coding right now !!
+Stay consistent. Stay sovereign. Start coding right now!
