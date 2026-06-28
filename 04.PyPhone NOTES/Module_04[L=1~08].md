@@ -1,0 +1,11 @@
+# 📘 Module 4 Cheat Sheet – Functions & Scope
+- **Define:** `def name(params):`
+- **Call:** `name(args)`
+- **Return:** `return val`
+- **Default:** `def f(a, b=10):`
+- **`*args`** (tuple of extra positional)
+- **`**kwargs`** (dict of extra keyword)
+- **Scope order:** Local → Enclosing → Global → Built-in
+- **Global modify:** `global x`
+- **Lambda:** `lambda args: expr`
+- **Recursion:** function calls itself; must have base case

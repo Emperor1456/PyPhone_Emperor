@@ -1,0 +1,12 @@
+# 📘 Module 2 Cheat Sheet – Control Flow
+- **if:** `if cond:`
+- **if-else:** `if cond: ... else: ...`
+- **elif:** `if ... elif ... else:`
+- **Nested:** `if` inside `if`
+- **match-case:** `match var: case pattern: ... case _:`
+- **while:** `while cond:`
+- **for:** `for var in iterable:`
+- **range:** `range(start,stop,step)`
+- **break:** exit loop immediately
+- **continue:** skip to next iteration
+- **pass:** do nothing (placeholder)
