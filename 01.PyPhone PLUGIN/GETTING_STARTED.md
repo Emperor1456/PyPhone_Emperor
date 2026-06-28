@@ -1,64 +1,79 @@
 # Getting Started with PyPhone Emperor
 
-Welcome. This guide will help you navigate the complete Python foundation course,
-whether you're on a phone or a computer. No prior experience needed – just dedication.
+Welcome. This guide will help you navigate the complete Python foundation course.  
+No prior experience needed — just dedication and a phone.
 
 ---
 
-## 1. Understand the Structure
+## 1. The Course at a Glance
 
-The course is **8 modules, 66 lessons**. Each lesson has:
-- A **Lecture Sheet** (print‑ready Markdown, designed like a textbook page).
-- A **Practice Sheet** (interactive Python script that coaches you task‑by‑task).
+The curriculum contains **8 modules** and **66 lessons**.
+Every lesson has two files:
 
-All lessons live inside `03.PyPhone COURSE/`.
-Start at `PyPhone_Module_01` and work forward.
+- **Lecture Sheet** (`.md`) — the concept, explained clearly.
+- **Practice Sheet** (`.py`) — an interactive coach that checks your code.
+
+All lessons live inside the folder `03.PyPhone COURSE/`.
 
 ---
 
-## 2. Use the Practice Coaches
+## 2. How to Progress
 
-Inside every module’s `Practice_Sheets/` folder, you will find `.py` files.
-Run them in Termux:
+- Open any module (e.g., `PyPhone_Module_01`).
+- Read the `Table_of_Contents.md` to see the lesson list.
+- Start with the first **Lecture Sheet** inside `Lecture_Sheets/`.
+- Once you understand the ideas, open the matching **Practice Sheet** inside `Practice_Sheets/` and run it in Termux:
+  ```
+  python L-01_Variables_DataTypes.py
+  ```
+- The coach will give you tasks, check your answers instantly, and give hints if you’re wrong.
+- Move to the next lesson only when you pass the current one.
+
+---
+
+## 3. Folder Structure (Simplified)
 
 ```
-python L-01_Variables_DataTypes.py
+03.PyPhone COURSE/
+├── PyPhone_Module_01/
+│   ├── Table_of_Contents.md
+│   ├── Lecture_Sheets/
+│   │   └── L-01_Variables_DataTypes.md ...
+│   └── Practice_Sheets/
+│       └── L-01_Variables_DataTypes.py ...
+├── PyPhone_Module_02/
+...
+└── PyPhone_Module_08/
 ```
 
-Each coach asks you to write a specific line of Python, checks your answer instantly, and gives hints if you're wrong. You cannot proceed until you get it right. This is how real learning happens.
+The same structure repeats for every module.
 
 ---
 
-## 4. Print the Book
+## 4. Tools You Need
 
-All lecture sheets can be combined and printed as a single physical book.
-A LaTeX template is provided (`pyphone_template.tex`) for PDF generation.
-Print it. Read it offline. Mark it with a pen. It is yours.
+- **Termux** (terminal) – to run Python files.
+- **Acode** (editor) – to read lecture sheets and write code.
+- **Git** – to track your progress (optional but recommended).
 
----
-
-## 5. Companion Resources
-
-- **YouTube** – Search any topic after a lesson to see it in action.
-- **Python Crash Course** by Eric Matthes – Project‑based introduction.
-- **Automate the Boring Stuff** by Al Sweigart – Practical automation.
-- **Think Python** by Allen B. Downey – Computational thinking.
-
-These are companions, not replacements. The course itself is complete.
+Setup instructions are in `SETUP_GUIDE.md` inside `01.PyPhone PLUGIN/`.
 
 ---
 
-## 6. The Most Important Requirement: You
+## 5. Cheat Sheets & Notes
 
-This entire curriculum was built on an Android phone, without a laptop or classroom.
-66 lessons, 8 modules, thousands of lines of code – typed by hand.
-
-The only thing that determines success is your consistency.
-Show up daily. Type every line yourself. Ask questions. Push through confusion.
-
-**No powerful setup is required – just a decision to become a sovereign engineer.**
+- **04.PyPhone NOTES/** contains a one‑page cheat sheet for each module.
+- Use them for quick revision before interviews or practice.
 
 ---
 
-*Built entirely on a phone by Emperor.*
+## 6. The Golden Rule
+
+Type every line yourself.  
+Never copy‑paste.  
+Understanding comes from your fingers, not from reading alone.
+
+---
+
+*Built entirely on a phone by Emperor.*  
 *Stay consistent. Stay sovereign. Finish what you start.*
