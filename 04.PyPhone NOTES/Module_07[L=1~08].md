@@ -1,0 +1,11 @@
+# 📘 Module 7 Cheat Sheet – OOP
+- **Class:** `class Name:`
+- **Constructor:** `def __init__(self, ...):`
+- **Instance method:** `def method(self):`
+- **Instance var:** `self.x`
+- **Class var:** shared in class body
+- **Inheritance:** `class Child(Parent):`
+- **Override:** same method name in child
+- **super():** call parent method
+- **Special:** `__str__`, `__repr__`, `__len__`
+- **Property:** `@property` + `@x.setter`

@@ -1,2 +1,4 @@
-message = "Hello, Python Programmer Emperor !!"
-print(message)
+print("Python")
+print("\tPython")
+
+print("\nPython")
