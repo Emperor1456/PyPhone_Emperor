@@ -14,9 +14,8 @@ Every folder has a single purpose:
 
 - **01.PyPhone PLUGIN/** – Turn your phone into a dev machine (Termux, Acode, Git, GitHub).
 - **02.PyPhone SYLLABUS/** – The full curriculum map.
-- **03.PyPhone COURSE/** – **66 lessons across 8 modules.** Each lesson has a `Lecture_Sheet` (print‑ready) and a `Practice_Sheet` (interactive coach).
-- **04.PyPhone NOTES/** – One‑page revision cards for every module.
-- **05.PyPhone Practise/** – Module‑end projects that prove your skills.
+- **03.PyPhone COURSE/** – **66 lessons across 8 modules.** Each lesson has a `Lecture_Sheet` (Markdown) and a `Practice_Sheet` (interactive coach).
+- **04.PyPhone NOTES/** – Quick revision cards for every module.
 
 ### What you will master
 **Module 1** – Python Fundamentals (variables, operators, bitwise)  
@@ -48,13 +47,6 @@ No fluff. No filler. Just the exact knowledge a professional needs.
 - **Two bricks at a time** – exactly two new concepts per lesson.
 - **Phone‑first design** – all code fits a phone screen, no sideways scrolling.
 - **Self‑checking practices** – every exercise validates your code automatically.
-
----
-
-## 📖 The Book
-
-All lecture sheets can be printed as a single, elegant book.  
-A LaTeX template is included for PDF generation (see `pyphone_template.tex`).
 
 ---
 
