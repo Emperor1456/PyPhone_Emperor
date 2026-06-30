@@ -1,4 +1,8 @@
-print("Python")
-print("\tPython")
+type("hello")
+type(100)
+type(99.9)
 
-print("\nPython")
+print(type("hello"))
+print(type(100))
+
+print("ab" * 3)

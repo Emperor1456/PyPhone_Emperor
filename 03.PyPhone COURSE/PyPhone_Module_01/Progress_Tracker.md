@@ -1,7 +1,7 @@
 # PyPhone Module 01 – Progress Tracker
 
-- [ ] L-01  Variables & Data Types
-- [ ] L-02  Typecasting
+- [ ✓ ] L-01  Variables & Data Types
+- [ ✓ ] L-02  Typecasting
 - [ ] L-03  User Input
 - [ ] L-04  Comments & Escape Sequences
 - [ ] L-05  Escape Sequences Cont.
