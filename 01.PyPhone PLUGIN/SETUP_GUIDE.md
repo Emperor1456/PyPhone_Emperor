@@ -1,5 +1,5 @@
 # 📱 Complete Phone‑Based Python Setup Guide
-**Termux + Acode + Git + GitHub**
+**Termux + Acode + Git + GitHub + Interactive Practice Engine**
 
 Turn your Android phone into a complete Python development environment.  
 No laptop required. All tools are free and open‑source.
@@ -114,53 +114,107 @@ All course materials are now inside `~/PyPhone_Emperor/`.
 
 ---
 
-## 8. Daily Workflow: Write → Run → Commit → Push
-### 8.1. Write Code in Acode
-- Open Acode → tap the folder icon.
-- Navigate to **Termux home** → `PyPhone_Emperor` (you may need to grant Acode access to Termux’s storage via the file manager).
-- Inside the appropriate module folder (e.g., `03.PyPhone COURSE/PyPhone_Module_01/Practice_Sheets/`), open a `.py` file or create a new one.
-- Type your code, save.
+## 8. Understanding the New Course Structure (v2.0)
+Inside each module folder (e.g., `03.PyPhone COURSE/PyPhone_Module_01/`) you will find:
 
-### 8.2. Run Code in Termux
-Switch to Termux, navigate to the practice folder:
+- **`i_Lecture_Sheets/`** – Markdown lesson files (read in Acode).
+- **`ii_Practice_Sheets/`** – Python practice coaches powered by the **interactive engine**.
+- **`iii_Debugging_Sheets/`** – Three broken Python scripts per module that you must fix.
+- **`iv_Review_Sheets/`** – A final review task to lock in the whole module.
+
+The engine file **`practice_engine.py`** lives in `03.PyPhone COURSE/` and is used by every practice sheet automatically.
+
+---
+
+## 9. The Interactive Practice Engine
+Every practice sheet now offers:
+
+- **Three difficulty levels:** Easy, Medium, Hard. Choose at the start.
+- **Progressive hints:** Type `:hint` at any time to get a clue.
+- **Instant verification:** Your code is executed and checked immediately.
+- **Sandbox safety:** Each run is isolated – no risk to your files.
+
+A full guide is available in `01.PyPhone PLUGIN/PRACTICE_ENGINE_GUIDE.md`.
+
+---
+
+## 10. Daily Workflow: Read → Practice → Debug → Review
+### 10.1. Read the Lecture
+- Open the `.md` file from `i_Lecture_Sheets/` in Acode.
+
+### 10.2. Practice with the Engine
+- Switch to Termux, navigate to the module folder:
 
 ```bash
-cd ~/PyPhone_Emperor/03.PyPhone\ COURSE/PyPhone_Module_01/Practice_Sheets
-python L-01_Variables_DataTypes.py
+cd ~/PyPhone_Emperor/03.PyPhone\ COURSE/PyPhone_Module_01
+python ii_Practice_Sheets/L-01_Variables_Data_Types.py
 ```
 
-### 8.3. Commit and Push to GitHub
-After completing a lesson:
+- Choose a level (1‑3).
+- Type your Python code.  
+  - Use `:hint` if stuck.
+  - Use `:quit` to exit early.
+- The engine will tell you ✅ or ❌ immediately.
+
+### 10.3. Debug Broken Code
+- After finishing all practice sheets, open the files in `iii_Debugging_Sheets/`.
+- Each contains a deliberate mistake. Find the error, fix it, and run the corrected script.
+
+### 10.4. Module Review
+- Complete the final review challenge in `iv_Review_Sheets/` (re‑run the Hard levels without hints).
+- Mark the `Progress_Tracker.md` in the module root as complete.
+
+---
+
+## 11. Commit and Push to GitHub
+After completing a lesson or a module:
 
 ```bash
 cd ~/PyPhone_Emperor
 git add .
-git commit -m "Completed L‑01: Variables and Data Types"
+git commit -m "Completed Module 01 – Python Fundamentals"
 git push origin main
 ```
 
-(If your default branch is `master`, use `git push origin master`.)
+---
+
+## 12. The Capstone – Imperial Finance
+After you finish all 8 modules, head to `05.Final Capstone/`.  
+You’ll find the project brief (`IMPERIAL_FINANCE_BRIEF.md`) and a starter script (`imperial_finance.py`).  
+Build a complete CLI personal finance tracker that integrates every skill from the course.
 
 ---
 
-## 9. Learning Method: Two Bricks at a Time
+## 13. Your Diploma
+Once the capstone is complete, generate your personalized PyPhone Emperor certificate:
+
+```bash
+python generate_certificate.py
+```
+
+Answer the prompts and a `GRADUATION.md` file will be created. Open it in Acode’s preview to see your name in gold.
+
+---
+
+## 14. Learning Method: Two Bricks at a Time
 Each lesson introduces exactly two new concepts. You type the code, run it, understand it, and only then move forward.  
 This builds deep, lasting knowledge.
 
 ---
 
-## 10. Common Errors & Fixes
+## 15. Common Errors & Fixes
 - **`fatal: not a git repository`** – Run the command inside `~/PyPhone_Emperor`.
 - **`fatal: detected dubious ownership`** – Run the suggested `git config --global --add safe.directory` command.
 - **`repository not found`** – Verify the GitHub URL; ensure the repo exists.
 - **Push rejected** – If the remote has commits you don’t, use `git push origin main --force` only if you’re sure.
 - **`input()` keyboard doesn’t appear** – Tap the Termux screen once to focus.
 - **`python: command not found`** – Use `python3` instead, or reinstall `python`.
+- **`ModuleNotFoundError: No module named 'practice_engine'`** – Ensure you’re running the practice sheet from the module folder (e.g., `PyPhone_Module_01`) and that `practice_engine.py` is in `03.PyPhone COURSE/`.
 
 ---
 
-## 11. You’re Ready
-Open `PyPhone_Module_01`, start with `Lecture_Sheets/L-01_Variables_DataTypes.md`, then run the matching practice coach.  
+## 16. You’re Ready
+Open `PyPhone_Module_01`, start with `i_Lecture_Sheets/L-01_Variables_Data_Types.md`, then run the matching practice coach.  
 Type every line. Commit every lesson. Build your empire.
 
 *Stay consistent. Stay sovereign. Start coding.*  
