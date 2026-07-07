@@ -1,8 +1,4 @@
-# practice_engine.py — Hints & Levels Engine for PyPhone Emperor
-# Runs Python code tasks with progressive hints and difficulty levels.
-
-import sys
-import traceback
+import sys, io, textwrap, traceback
 
 class Level:
     EASY = "Easy"
@@ -10,9 +6,9 @@ class Level:
     HARD = "Hard"
 
 class Task:
-    def __init__(self, description, verify_func, level=Level.EASY, hints=None):
+    def __init__(self, description, expected_output, level=Level.EASY, hints=None):
         self.description = description
-        self.verify = verify_func
+        self.expected_output = expected_output.strip()
         self.level = level
         self.hints = hints or []
         self.hint_index = 0
@@ -25,67 +21,61 @@ class Task:
         return None
 
 def run_task(task):
-    """Run a single task with retries, hints, and input loop."""
-    print("=" * 44)
+    print("=" * 42)
     print(f"🧱 TASK [{task.level.upper()}]")
-    # Wrap description to fit phone screen
-    words = task.description.split()
-    line = "  📋 "
-    for w in words:
-        if len(line) + len(w) + 1 > 42:
-            print(line)
-            line = "      " + w
-        else:
-            if line == "  📋 ":
-                line += w
-            else:
-                line += " " + w
-    print(line)
-    print("-" * 44)
+    # wrap description at 42 chars
+    wrapped = textwrap.fill(task.description, width=42,
+                            initial_indent="  📋 ", subsequent_indent="     ")
+    print(wrapped)
+    print("-" * 42)
 
     attempts = 0
     while True:
         attempts += 1
-        code = input("  >>> ").strip()
-        if code.lower() in ("exit", "quit"):
-            print("👋 Practice ended.")
-            sys.exit(0)
-        if code.lower() == ":hint":
-            hint = task.next_hint()
-            if hint:
-                print(f"  💡 HINT: {hint}")
-            else:
-                print("  No more hints.")
+        print("\nEnter your code below.")
+        print("(Blank line to finish, :hint, :quit)")
+        lines = []
+        while True:
+            raw = input("... " if lines else ">>> ").rstrip('\n')
+            if raw.strip().lower() in (":quit", "exit"):
+                print("Exiting task.")
+                return False
+            if raw.strip().lower() == ":hint":
+                hint = task.next_hint()
+                if hint:
+                    print(f"💡 HINT: {hint}")
+                else:
+                    print("No more hints.")
+                continue
+            if raw == "":
+                break
+            lines.append(raw)
+        user_code = "\n".join(lines)
+        if not user_code.strip():
+            print("⚠️ No code entered. Try again.")
             continue
-        if code.lower() == ":quit":
-            print("Exiting task.")
-            return False
 
-        # Execute user code in a fresh global namespace (isolated per attempt)
+        old_stdout = sys.stdout
+        sys.stdout = io.StringIO()
         user_globals = {}
         try:
-            exec(code, user_globals)
+            exec(user_code, user_globals)
+            output = sys.stdout.getvalue()
         except Exception as e:
-            print(f"  ❌ Python error: {e}")
-            hint = task.next_hint()
-            if hint:
-                print(f"  💡 HINT: {hint}")
-            continue
-
-        # Verify using the task's verify function
-        try:
-            # Pass the user_globals so verification can check variables
-            if task.verify(user_globals):
-                print(f"  ✅ Correct! ({attempts} attempt{'s' if attempts != 1 else ''})")
-                return True
-            else:
-                print("  ❌ Not quite. Try again or type :hint for help.")
-        except Exception as e:
-            print(f"  ❌ Verification error: {e}")
+            sys.stdout = old_stdout
+            print("❌ Error during execution:")
             traceback.print_exc()
+            continue
+        finally:
+            sys.stdout = old_stdout
 
-def main():
-    print("PyPhone practice engine loaded. Use `run_task(task)` to start a task.")
-
-if __name__ == "__main__":
-    main()
+        out_stripped = output.strip()
+        if out_stripped == task.expected_output:
+            print(f"✅ Correct! ({attempts} attempt{'s' if attempts != 1 else ''})")
+            return True
+        else:
+            print("❌ Output mismatch.")
+            print("Expected (first 120 chars):")
+            print(task.expected_output[:120])
+            print("Got (first 120 chars):")
+            print(out_stripped[:120])

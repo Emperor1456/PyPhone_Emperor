@@ -1,9 +1,25 @@
 import sys; sys.path.append("../.."); from practice_engine import Task, Level, run_task
-def verify_easy(g): return 'keys' in g and g['keys']==['name','age']
-easy=Task("d={'name':'Emperor','age':18}; get list of keys into 'keys'", verify_easy, Level.EASY, hints=["d={'name':'Emperor','age':18}","keys=list(d.keys())"])
-def verify_medium(g): return 'vals' in g and g['vals']==['Emperor',18]
-medium=Task("d={'name':'Emperor','age':18}; get list of values into 'vals'", verify_medium, Level.MEDIUM, hints=["d={'name':'Emperor','age':18}","vals=list(d.values())"])
-def verify_hard(g): return 'popped' in g and g['popped']==18 and 'd' in g and g['d']=={'name':'Emperor'}
-hard=Task("d={'name':'Emperor','age':18}; pop the 'age' key and store its value in 'popped', d should remain with only 'name'", verify_hard, Level.HARD, hints=["d={'name':'Emperor','age':18}","popped=d.pop('age')"])
+
+easy = Task(
+    description="d={'name':'Emperor','age':18}. Print list of keys.",
+    expected_output="['name', 'age']",
+    level=Level.EASY,
+    hints=["d={'name':'Emperor','age':18}", "print(list(d.keys()))"]
+)
+
+medium = Task(
+    description="Same d. Print list of values.",
+    expected_output="['Emperor', 18]",
+    level=Level.MEDIUM,
+    hints=["print(list(d.values()))"]
+)
+
+hard = Task(
+    description="d={'name':'Emperor','age':18}. Pop the 'age' key, print the popped value and the remaining dict on two lines.",
+    expected_output="18\n{'name': 'Emperor'}",
+    level=Level.HARD,
+    hints=["d={'name':'Emperor','age':18}", "popped=d.pop('age')", "print(popped)", "print(d)"]
+)
+
 def main(): c=input("1 Easy 2 Med 3 Hard "); tasks={"1":easy,"2":medium,"3":hard}; run_task(tasks.get(c,easy))
 if __name__=="__main__": main()
