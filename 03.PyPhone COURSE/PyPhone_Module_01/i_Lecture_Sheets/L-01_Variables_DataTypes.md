@@ -1,96 +1,121 @@
 # 📘 PyPhone Emperor · Module 1  
-# 📖 L‑01 – Variables & Data Types
+# 📖 L‑01 – Variables & Data Types in Inventory
 
 ---
 
 ## 🎯 OBJECTIVE
-Learn to store data in memory using variables,
-and recognise the three fundamental data types
-in Python: **string**, **integer**, and **float**.
-This is the first building block of every program.
+Learn to store business data in variables,
+recognise the three fundamental data types,
+and output a simple product label.
+This is the first brick of every business program.
 
 ---
 
 ## 🧱 BRICK 1 – What Is a Variable?
 
-A variable is a labelled box in memory.
+A variable is a **named box in memory**.
 You assign it with the equals sign:
 
 ```python
 variable_name = value
 ```
 
-**Example:**
+**Inventory example – three core types:**
+
 ```python
-name = "Emperor"
-age  = 18
+product_name = "Wireless Mouse"   # text (str)
+unit_price   = 24.99              # decimal (float)
+stock        = 150                # whole number (int)
 ```
 
-Now `name` holds the text `"Emperor"`,
-and `age` holds the integer `18`.
+Now `product_name` holds the text,
+`unit_price` holds the decimal,
+and `stock` holds the integer.
 
-### Rules for naming variables
+### Naming rules (enforced by Python)
 - Must start with a letter (a–z, A–Z) or underscore `_`
 - Cannot start with a digit
 - Can contain letters, digits, underscores
-- Case‑sensitive: `age`, `Age`, `AGE` are three different variables
-- No spaces, no special characters (like `@`, `$`)
+- Case‑sensitive: `Stock`, `stock`, `STOCK` are three different variables
+- No spaces, no hyphens, no special characters
 - Must not be a Python keyword (`if`, `for`, `class`, etc.)
 
-**Valid:** `total_price`, `user2`, `_count`  
+**Valid:** `unit_price`, `item2`, `_qty`  
 **Invalid:** `2day`, `total-price`, `user name`
 
-> 💡 **NOTE:** A variable name should be descriptive — `customer_name` not `cn`.
+> 💡 Use **snake_case** – lowercase words joined by underscores.  
+> `product_name` is professional; `pn` is not.
 
 ---
 
 ## 🧱 BRICK 2 – Three Core Data Types
 
-Python automatically sets the type when you assign a value.
+Python sets the type automatically when you assign a value.
 
-| Type  | Description                     | Examples         |
-|-------|---------------------------------|------------------|
-| `str` | text, inside `" "` or `' '`     | `"hello"`, `'A'` |
-| `int` | whole number, positive/negative | `42`, `-7`, `0`  |
-| `float`| number with a decimal point     | `3.14`, `-0.5`   |
+| Type    | Meaning               | Inventory example          |
+|---------|-----------------------|----------------------------|
+| `str`   | text                  | `"Wireless Mouse"`         |
+| `int`   | whole number          | `150` (stock count)        |
+| `float` | number with decimals  | `24.99` (price in dollars) |
 
-### Checking types with `type()`
+### Printing values – the `print()` function
+To output the product details, use `print()`.
 
 ```python
->>> type("hello")
-<class 'str'>
->>> type(100)
-<class 'int'>
->>> type(99.9)
-<class 'float'>
+product_name = "Wireless Mouse"
+unit_price   = 24.99
+stock        = 150
+
+print(product_name)    # Wireless Mouse
+print(unit_price)      # 24.99
+print(stock)           # 150
 ```
 
-### Mixing types in operations
-- `int * float` → `float` (e.g., `5 * 2.0` = `10.0`)
-- `int + int` → `int`
-- `str + int` → **TypeError** (must convert first)
+### Dynamic typing (Preview)
+A variable can change type later – that’s dynamic typing.
 
-> ⚠️ **WARNING:** Python is **dynamically typed** — a variable can change type later. Always know your current type.
+```python
+x = 1234          # int
+x = "1234"        # now a str
+print(type(x))    # <class 'str'>
+```
+
+> ⚠️ **WARNING:** Python’s dynamic typing is powerful but
+> can hide bugs. Always know the current type of a variable.
 
 ---
 
-## 🔍 Practice Preview (for later coding)
-```python
-product  = "Laptop"
-quantity = 5
-price    = 799.99
+## 💡 Real‑world Usage
+Every inventory system, from a corner shop to a
+warehouse, starts with variables that describe the
+products. The same `product_name`, `price`, `stock`
+pattern runs on servers, in spreadsheets, and in
+your phone’s apps.
 
-print(type(product))
-print(type(quantity))
-print(type(price))
-# What do you think this prints?
-print(type(quantity * price))
+---
+
+## 🔍 Practice Preview
+You are an inventory clerk. Create three variables:
+
+- `product_name = 'Wireless Mouse'`
+- `unit_price = 24.99`
+- `stock = 150`
+
+Then print them on separate lines.
+
+In Termux, run the practice coach:
+```bash
+python ii_Practice_Sheets/L-01_Variables_Data_Types.py
 ```
+
+Choose **Easy** and type exactly those lines.  
+The engine will verify your output instantly.
 
 ---
 
 ## 📌 Key Takeaway
-- A variable stores a value with a name.
-- The three core types are `str`, `int`, `float`.
-- Use `type()` to inspect any value.
+- A variable is a named box for a value.
+- The three core types are `str` (text), `int` (whole number), `float` (decimal).
+- Use `print()` to display any variable.
 - Python sets the type for you, but you must stay aware of it.
+- Professional code uses descriptive, snake_case names.

@@ -6,12 +6,18 @@ class Level:
     HARD = "Hard"
 
 class Task:
-    def __init__(self, description, expected_output, level=Level.EASY, hints=None):
+    def __init__(self, description, arg2, level=Level.EASY, hints=None):
         self.description = description
-        self.expected_output = expected_output.strip()
         self.level = level
         self.hints = hints or []
         self.hint_index = 0
+        # Detect style: callable → old verify function, string → new expected_output
+        if callable(arg2):
+            self.verify_func = arg2
+            self.expected_output = None
+        else:
+            self.verify_func = None
+            self.expected_output = arg2.strip()
 
     def next_hint(self):
         if self.hint_index < len(self.hints):
@@ -21,13 +27,12 @@ class Task:
         return None
 
 def run_task(task):
-    print("=" * 42)
+    print("=" * 44)
     print(f"🧱 TASK [{task.level.upper()}]")
-    # wrap description at 42 chars
-    wrapped = textwrap.fill(task.description, width=42,
+    wrapped = textwrap.fill(task.description, width=48,
                             initial_indent="  📋 ", subsequent_indent="     ")
     print(wrapped)
-    print("-" * 42)
+    print("-" * 44)
 
     attempts = 0
     while True:
@@ -55,6 +60,26 @@ def run_task(task):
             print("⚠️ No code entered. Try again.")
             continue
 
+        # --- Old style: verify via function (check globals) ---
+        if task.verify_func is not None:
+            user_globals = {}
+            try:
+                exec(user_code, user_globals)
+            except Exception as e:
+                print("❌ Error during execution:")
+                traceback.print_exc()
+                continue
+            try:
+                if task.verify_func(user_globals):
+                    print(f"✅ Correct! ({attempts} attempt{'s' if attempts != 1 else ''})")
+                    return True
+                else:
+                    print("❌ Not quite. Try again or type :hint for help.")
+            except Exception as e:
+                print(f"❌ Verification error: {e}")
+            continue
+
+        # --- New style: compare printed output ---
         old_stdout = sys.stdout
         sys.stdout = io.StringIO()
         user_globals = {}
@@ -79,3 +104,9 @@ def run_task(task):
             print(task.expected_output[:120])
             print("Got (first 120 chars):")
             print(out_stripped[:120])
+
+def main():
+    print("PyPhone Professional Engine loaded.")
+
+if __name__ == "__main__":
+    main()

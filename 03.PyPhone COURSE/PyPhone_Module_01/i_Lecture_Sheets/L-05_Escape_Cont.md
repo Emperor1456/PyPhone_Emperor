@@ -1,119 +1,108 @@
 # 📘 PyPhone Emperor · Module 1  
-# 📖 L‑05 – Escape Sequences (Continued)
+# 📖 L‑05 – Escape Sequences (Log Formatting)
 
 ---
 
 ## 🎯 OBJECTIVE
 Complete your mastery of escape sequences.
-Learn to include quotes inside strings
-and to print special characters like backslashes.
-This ensures your strings can hold any text
-without breaking Python syntax.
+Learn to format log entries with tabs,
+include special characters like the bell,
+and use raw strings for file paths.
+This ensures your program output is professional
+and your strings can hold any text without breaking.
 
 ---
 
-## 🧱 BRICK 1 – Escaping Quotes Inside Strings
+## 🧱 BRICK 1 – Tab, Bell, and Backslash
 
-Python uses quotes to mark where a string begins and ends.
-If you want a quote character inside the string itself,
-you must either **escape** it with a backslash
-or choose a different outer quote.
+Escape sequences allow you to embed invisible characters
+and special symbols inside strings.
 
-### Method 1: Backslash escape
-Put `\` before the quote to tell Python it is part of the text,
-not the end of the string.
+### Tab `\t`
+Used to align columns in log entries or reports.
 
 ```python
-print("She said, \"Hello!\"")
-# She said, "Hello!"
-
-print('It\'s a beautiful day.')
-# It's a beautiful day.
+print("Name:\tEmperor")
+print("Age:\t18")
 ```
 
-### Method 2: Mix the outer quotes
-If the string contains double quotes, wrap it in single quotes.
-If it contains single quotes, wrap it in double quotes.
+Output:
+```
+Name:   Emperor
+Age:    18
+```
+
+### Bell `\a` (Alert)
+Historically made a beep; in modern terminals it may
+do nothing but still represents an alert.
 
 ```python
-print('He said, "Python is great!"')
-print("It's easy to learn.")
+print("Error!\a")   # may not produce sound, but the character is there
 ```
 
-> 💡 **TIP:** Mixing outer quotes is cleaner when you have many quote characters inside the string.
-
-### Escaping the backslash itself
-To print one backslash, write two.
-
-```python
-print("A single backslash: \\")
-# A single backslash: \
-```
-
----
-
-## 🧱 BRICK 2 – More Useful Escape Sequences
-
-Beyond newline `\n` and tab `\t`, these escapes handle
-special characters that are otherwise hard to type.
-
-- `\\`   Backslash (prints `\`)
-- `\"`   Double quote (prints `"`)
-- `\'`   Single quote (prints `'`)
-
-### Example with file paths
-Windows paths use backslashes, so escape them.
+### Backslash `\\`
+To display a single backslash, write two.
 
 ```python
 print("Path: C:\\Users\\Emperor")
 # Path: C:\Users\Emperor
 ```
 
-### Raw strings – turn off all escapes
-Prefix with `r` to treat backslashes as literal characters.
+### Escaping quotes – recap
+- `\"` inside a double‑quoted string prints `"`
+- `\'` inside a single‑quoted string prints `'`
+
+---
+
+## 🧱 BRICK 2 – Raw Strings
+
+Sometimes you need backslashes to be treated literally,
+not as escape characters. Prefix the string with `r`.
 
 ```python
-print(r"C:\new_folder\temp")
-# C:\new_folder\temp   (no tab or newline)
+print(r"\n is not a newline here")
+# \n is not a newline here
 ```
 
-Use raw strings for file paths, regex, or any text
-with many backslashes.
+**When to use raw strings**
+- File paths on Windows: `r"C:\new_folder\temp"`
+- Regular expressions (later)
+- Displaying a literal `\n` or `\t` in output
 
-> ⚠️ **WARNING:** A raw string cannot end with a single backslash. `r"\"` is invalid.
+> ⚠️ A raw string cannot end with a single backslash.
+> `r"\"` is invalid.
 
 ---
 
 ## 💡 Real‑world Usage
-Enterprise logs often include file paths or quoted messages.
+In enterprise logging, you often format a line with
+a timestamp, level, and message, separated by tabs.
 
 ```python
-# Log a file access
-path = "C:\\Program Files\\MyApp\\config.txt"
-print("Reading config from:", path)
+print("2026‑07‑08\tINFO\tServer started")
+print("2026‑07‑08\tERROR\tDisk full")
+print(r"Log path: C:\app\logs\server.log")
 ```
 
 ---
 
-## 🔍 Practice Preview (for later coding)
-```python
-# Print a quote within a quote
-print("The sign said, \"Welcome to Python\".")
+## 🔍 Practice Preview
+You will produce log‑style output.
 
-# Print a file path correctly
-print("File location: C:\\Users\\Emperor\\docs")
+- **Easy:** Print `Name:\tAge` (with a real tab).
+- **Medium:** Print a string containing the bell character `\a`.
+- **Hard:** Print a raw string that shows `\n` literally.
 
-# Demonstrate single and double quote escaping
-print('It\'s a "double" example.')
-
-# Raw string example
-print(r"In raw string, \n is not a newline.")
+Run the practice coach:
+```bash
+python ii_Practice_Sheets/L-05_Escape_Sequences_Cont.py
 ```
+
+Choose your level, type the script, and the engine will verify.
 
 ---
 
 ## 📌 Key Takeaway
-- Escape quotes with `\"` or `\'`.
-- Mix outer quotes when convenient.
-- `\\` prints one backslash.
-- Raw strings (`r"..."`) ignore escapes.
+- `\t` aligns columns; `\a` represents an alert; `\\` prints one backslash.
+- Raw strings (`r"..."`) ignore escape sequences.
+- Use raw strings for file paths and any text with many backslashes.

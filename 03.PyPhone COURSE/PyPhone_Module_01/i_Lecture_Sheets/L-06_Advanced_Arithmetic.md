@@ -1,119 +1,114 @@
 # 📘 PyPhone Emperor · Module 1  
-# 📖 L‑06 – Advanced Arithmetic Operators
+# 📖 L‑06 – Advanced Arithmetic in Reports
 
 ---
 
 ## 🎯 OBJECTIVE
-Learn the four advanced arithmetic operators
-in Python that go beyond basic `+`, `-`, `*`, `/`.
-These are essential for integer division,
-remainders, exponentiation, and algorithms.
+Learn the three advanced arithmetic operators
+that go beyond `+`, `-`, `*`, `/`.
+These are essential for calculating pages,
+checking remainders, and computing powers
+in business reports and data analysis.
 
 ---
 
 ## 🧱 BRICK 1 – Floor Division and Modulus
 
 ### Floor Division `//`
-Divides and **chops off** the decimal part
-(always rounds down, even for negatives).
+Divides and **chops off** the decimal part,
+always rounding down. This is useful when you need
+a whole‑number result.
 
 ```python
-print(10 // 3)   # 3
-print(15 // 4)   # 3
-print(-10 // 3)  # -4  (rounds down, not toward zero)
-print(10.5 // 3) # 3.0
+full_pages = 31 // 4   # 7  (4×7=28, remainder 3)
 ```
 
 ### Modulus `%`
-Returns the **remainder** of a division.
+Returns the **remainder** after division.
+Often used to check if something is exactly divisible.
 
 ```python
-print(10 % 3)    # 1   (3×3=9, remainder 1)
-print(15 % 4)    # 3
-print(10 % 2)    # 0   (even number)
-print(11 % 2)    # 1   (odd number)
+leftover = 31 % 4      # 3   (because 31 = 7×4 + 3)
 ```
 
-### Relationship between `//` and `%`
-For any integers `a` and `b`:
+### A real‑world example: pagination
 ```python
-a == (a // b) * b + (a % b)
+total_lines = 31
+lines_per_page = 4
+pages      = total_lines // lines_per_page   # 7
+extra      = total_lines % lines_per_page    # 3
+print(pages)
+print(extra)
 ```
 
-> 💡 **INSIGHT:** `% 2` is the classic way to test if a number is even or odd.
+> 💡 `% 2` is the classic way to test if a number is even or odd.
 
 ---
 
-## 🧱 BRICK 2 – Exponentiation
+## 🧱 BRICK 2 – Exponentiation `**`
 
-### Exponentiation `**`
 Raises a number to a power.
 
 ```python
-print(2 ** 3)    # 8   (2 × 2 × 2)
-print(5 ** 2)    # 25  (5 squared)
-print(10 ** 0)   # 1   (anything to power 0 is 1)
-print(2 ** -1)   # 0.5 (negative exponent = reciprocal)
-print(4 ** 0.5)  # 2.0 (square root)
+size = 2 ** 10   # 1024
+print(size)
 ```
 
-### Operator precedence (PEMDAS)
-Python evaluates in this order:
-1. `**` (right to left)
-2. `*`, `/`, `//`, `%` (left to right)
-3. `+`, `-` (left to right)
+### Why it matters
+- Models compound growth or memory sizes.
+- `number ** 0.5` gives the square root.
+- Operator precedence: `**` is right‑associative.
+  `2 ** 3 ** 2` means `2 ** (3 ** 2) = 512`.
 
+### A business example: doubling a value
 ```python
-print(2 ** 3 ** 2)   # 2 ** (3 ** 2) = 2 ** 9 = 512
-print(10 + 5 * 2)    # 10 + 10 = 20
-print((10 + 5) * 2)  # 15 * 2 = 30
+start = 1
+days = 10
+final = start * (2 ** days)   # 1024
+print(final)
 ```
 
-> ⚠️ **COMMON PITFALL:** `**` is right‑associative. `2**3**2` means `2**(3**2)`, not `(2**3)**2`.
+> ⚠️ **COMMON PITFALL:** `**` is right‑associative.  
+> Use parentheses if you need left‑to‑right grouping.
 
 ---
 
 ## 💡 Real‑world Usage
-Floor division and modulus are used everywhere
-in scheduling, hashing, and page‑number calculations.
+Every analytics report uses floor division and modulus.
+For example, splitting a dataset into chunks,
+distributing items evenly, or calculating compound
+interest all rely on these operators.
 
 ```python
-# Calculate pages needed for a report
-total_lines = 47
-lines_per_page = 10
-pages = total_lines // lines_per_page
-if total_lines % lines_per_page != 0:
-    pages += 1
-print("Pages needed:", pages)
+# Total items and batch size
+total_items = 31
+batch_size = 4
+full_batches = total_items // batch_size   # 7
+remaining   = total_items % batch_size    # 3
+print("Full batches:", full_batches)
+print("Leftover:", remaining)
 ```
 
 ---
 
-## 🔍 Practice Preview (for later coding)
-```python
-# Floor division and modulus
-dividend = 17
-divisor = 5
-print("Floor division:", dividend // divisor)  # 3
-print("Remainder:", dividend % divisor)        # 2
+## 🔍 Practice Preview
+You will compute three values for an analytics report.
 
-# Exponentiation
-base = 2
-power = 10
-print("2^10 =", base ** power)
+- Floor division: `31 // 4`
+- Remainder: `31 % 4`
+- Exponentiation: `2 ** 10`
 
-# Check even/odd
-number = 42
-print("Is even?", number % 2 == 0)
-
-# Square root
-print("Square root of 25:", 25 ** 0.5)
+Run the practice coach:
+```bash
+python ii_Practice_Sheets/L-06_Advanced_Arithmetic.py
 ```
+
+Choose your level, type the script, and the engine will verify.
 
 ---
 
 ## 📌 Key Takeaway
-- `//` divides and floors (rounds down).
+- `//` gives the whole‑number result of division.
 - `%` gives the remainder after division.
-- `**` raises to a power; use `** 0.5` for square root.
-- Know the precedence: `**` first, then `* / // %`, then `+ -`.
+- `**` raises a number to a power; use `** 0.5` for square root.
+- Use them together to solve real problems like pagination or growth calculations.

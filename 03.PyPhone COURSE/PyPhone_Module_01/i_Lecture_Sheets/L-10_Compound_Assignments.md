@@ -1,128 +1,176 @@
 # 📘 PyPhone Emperor · Module 1  
-# 📖 L‑10 – Compound Assignments (All)
+# 📖 L‑10 – Compound Assignment Operators in Data Updates
 
 ---
 
 ## 🎯 OBJECTIVE
-Complete your mastery of all compound
-assignment operators in Python:
-`*=`, `/=`, `//=`, `%=`, `**=`.
-These operators let you perform an
-operation and assign the result in
-one compact step.
+Extend your mastery of assignment operators
+to include multiplication, division, floor division,
+modulus, and exponentiation assignment.
+These compound operators are essential for
+scaling prices, distributing batches, and
+applying complex business rules with minimal code.
 
 ---
 
-## 🧱 BRICK 1 – Multiply, Divide, Floor Divide
+## 🧱 BRICK 1 – Multiplication and Division Assignments
 
-### Multiply‑and‑assign `*=`
+### `*=` – multiply and assign
+Multiplies the variable by a value and stores the result.
+
 ```python
-x = 4
-x *= 3        # same as: x = x * 3
-print(x)      # 12
+x = 10
+x *= 5        # x = 10 * 5 = 50
+print(x)
 ```
 
-### Divide‑and‑assign `/=`
+**Business example – scaling a price by a factor:**
 ```python
-x = 20
-x /= 4        # same as: x = x / 4
-print(x)      # 5.0  (division always gives float)
+base_price = 20
+multiplier = 3
+base_price *= multiplier   # 60
+print(base_price)
 ```
 
-### Floor‑divide‑and‑assign `//=`
+### `/=` – divide and assign (float result)
+Divides the variable and stores the result as a float.
+
 ```python
-x = 20
-x //= 3       # same as: x = x // 3
-print(x)      # 6
+y = 10
+y /= 3        # y = 3.3333333333333335
+print(y)
 ```
 
-> ⚠️ **WARNING:** `//=` floors the result, so `-20 //= 3` gives `-7` (not `-6`).
+**Business example – splitting a bill:**
+```python
+total_bill = 100
+people = 3
+total_bill /= people   # 33.333...
+print(total_bill)
+```
+
+> 💡 `/=` always produces a float, even if the division is exact.
 
 ---
 
-## 🧱 BRICK 2 – Modulus and Power
+## 🧱 BRICK 2 – Floor Division, Modulus, and Exponentiation Assignments
 
-### Modulus‑and‑assign `%=`
+### `//=` – floor divide and assign
+Divides the variable, chops off the decimal, and stores the integer.
+
 ```python
-x = 17
-x %= 5        # same as: x = x % 5
-print(x)      # 2  (remainder of 17 ÷ 5)
+a = 5
+a //= 2       # a = 2 (5 // 2 = 2)
+print(a)
 ```
 
-### Power‑and‑assign `**=`
+**Business example – items per box:**
 ```python
-x = 2
-x **= 5       # same as: x = x ** 5
-print(x)      # 32  (2⁵)
+total_items = 23
+box_capacity = 5
+boxes_needed = total_items
+boxes_needed //= box_capacity   # 4 (full boxes, ignoring remainder)
+print(boxes_needed)
 ```
 
----
+### `%=` – modulus and assign
+Stores the **remainder** after division.
 
-## 💡 Complete Reference Table
+```python
+b = 5
+b %= 3        # b = 2 (5 % 3 = 2)
+print(b)
+```
 
-| Operator | Equivalent To      |
-|----------|--------------------|
-| `x += y` | `x = x + y`        |
-| `x -= y` | `x = x - y`        |
-| `x *= y` | `x = x * y`        |
-| `x /= y` | `x = x / y`        |
-| `x //= y`| `x = x // y`       |
-| `x %= y` | `x = x % y`        |
-| `x **= y`| `x = x ** y`       |
+**Business example – leftover items after packing:**
+```python
+total_items = 23
+box_capacity = 5
+leftover = total_items
+leftover %= box_capacity       # 3
+print(leftover)
+```
+
+### `**=` – exponentiation and assign
+Raises the variable to a power and stores the result.
+
+```python
+c = 3
+c **= 2       # c = 9
+print(c)
+```
+
+**Business example – compound interest over one period:**
+```python
+principal = 1000
+rate = 0.05
+principal *= (1 + rate)    # 1050.0
+principal **= 1            # same
+```
+
+> ⚠️ **WARNING:** `**=` is rarely used in everyday code,
+> but it’s critical in scientific or mathematical scripts.
 
 ---
 
 ## 💡 Real‑world Usage
-```python
-# Compound interest calculation
-principal = 1000
-rate = 1.05    # 5% growth
-principal *= rate   # year 1
-principal *= rate   # year 2
-principal *= rate   # year 3
-print("After 3 years:", principal)
+These operators combine two steps into one,
+making your code cleaner and less error‑prone.
 
-# Extracting digits with modulo
-number = 1234
-last_digit = number % 10    # 4
-number //= 10               # remove last digit
-print("Remaining:", number) # 123
+### Inventory restock with partial boxes
+```python
+total_items = 23
+box_size = 5
+full_boxes = total_items
+full_boxes //= box_size      # 4
+remaining = total_items
+remaining %= box_size        # 3
+print("Full boxes:", full_boxes)
+print("Leftover:", remaining)
+```
+
+### Adjusting a score with a multiplier
+```python
+score = 100
+multiplier = 1.5
+score *= multiplier          # 150.0
+print(score)
+```
+
+### Distributing discount equally
+```python
+price = 200
+discount = 50
+price -= discount            # 150
+price /= 2                   # 75.0
+print(price)
 ```
 
 ---
 
-## 🔍 Practice Preview (for later coding)
-```python
-# Test all compound assignments
-x = 10
-print("Start:", x)
+## 🔍 Practice Preview
+You will apply compound assignments to update
+several variables.
 
-x += 5
-print("+= 5:", x)    # 15
+- **Easy:** Start with `x = 10`, then multiply by 5 using `*=` and print `x`.
+- **Medium:** Start with `y = 10`, divide by 3 using `/=` and print the result
+  (it should show `3.33` after rounding).
+- **Hard:** Start with `a = 5`, floor‑divide by 2 using `//=` and print.
+  Then start with `b = 5`, modulus by 3 using `%=` and print.
+  The output must show `2` on the first line and `2` on the second.
 
-x -= 3
-print("-= 3:", x)    # 12
-
-x *= 2
-print("*= 2:", x)    # 24
-
-x /= 4
-print("/= 4:", x)    # 6.0
-
-x //= 2
-print("//= 2:", x)   # 3.0
-
-x **= 3
-print("**= 3:", x)   # 27.0
-
-x %= 7
-print("%= 7:", x)    # 6.0
+Run the practice coach:
+```bash
+python ii_Practice_Sheets/L-10_Compound_Assignments.py
 ```
+
+Choose your level, type the script, and the engine will verify.
 
 ---
 
 ## 📌 Key Takeaway
-- Compound operators combine an operation with assignment.
-- All seven follow the same pattern: `op=`.
-- `//=` and `%=` are especially useful for integer algorithms.
-- `/=` always produces a float.
+- `*=`, `/=`, `//=`, `%=`, `**=` combine arithmetic with assignment.
+- `/= ` always yields a float; `//=` yields an integer.
+- `%= ` gives the remainder.
+- `**=` raises to a power.
+- Use them to make your code concise and business‑logic clear.

@@ -1,112 +1,122 @@
 # 📘 PyPhone Emperor · Module 1  
-# 📖 L‑03 – User Input
+# 📖 L‑03 – User Input in Customer Interactions
 
 ---
 
 ## 🎯 OBJECTIVE
 Learn to receive data from the user at runtime
-using the `input()` function.
-Understand that all input arrives as a string,
-and how to convert it for further use.
-This is the bridge between your program
-and the outside world.
+using `input()`, and convert it to numbers
+so you can process orders and personalise responses.
+This connects your program to the outside world.
 
 ---
 
 ## 🧱 BRICK 1 – The `input()` Function
 
-`input()` makes your program pause and wait
-for the user to type something and press Enter.
-The typed value is always returned as a **string**.
+`input()` pauses your program and waits for the user
+to type something and press Enter.
+The result is **always a string**.
 
 ```python
 variable = input("Prompt message: ")
 ```
 
-**Example:**
+### Greeting a customer
+
 ```python
-name = input("What is your name? ")
-print("Hello, " + name + "!")
+name = input("Enter your name: ")
+print("Hello, " + name)
 ```
 
-If the user types `Emperor`, then `name` holds
-the string `"Emperor"`.
+If the user types `Emperor`, `name` holds
+the string `"Emperor"`, and the program prints a
+personalised greeting.
 
-### Important points
+**Key points:**
 - The prompt is optional: `input()` works without it.
-- The prompt goes inside the parentheses, in quotes.
 - The cursor waits on the same line after the prompt.
-- Everything the user types is captured as **text**.
-  Even if they type `42`, you get `"42"` (a string).
-
-> 💡 **INSIGHT:** `input()` is the simplest way to make a program interactive. Every real application uses some form of input.
+- Even if the user types `4`, you get `"4"` (a string).
 
 ---
 
-## 🧱 BRICK 2 – Converting Input to Numbers
+## 🧱 BRICK 2 – Converting Input for Calculations
 
-Since `input()` always returns a string,
+Since `input()` returns a string,
 you must **typecast** it to do any maths.
 
-**Two‑step approach (safe):**
+### Reading a single number
+
 ```python
-① raw = input("Enter your age: ")   # string
-② age = int(raw)                    # integer
-③ next_year = age + 1
-④ print("Next year you will be", next_year)
+age_str = input("Enter your age: ")    # user types 18
+age = int(age_str)                     # 18 (int)
+print("In 10 years you will be", age + 10)
 ```
 
-**One‑liner (shortcut):**
+### Reading a decimal value
+
 ```python
-age = int(input("Enter your age: "))
+price_str = input("Enter the price: ")  # user types 9.99
+price = float(price_str)                # 9.99 (float)
+print("Twice the price:", price * 2)
 ```
 
-### Handling decimal input
+### Reading two numbers on one line
+
+When the user enters two values separated by a space,
+you can split them and convert each one.
+
 ```python
-height = float(input("Height in metres: "))
+data = input("Enter two numbers: ")   # user types "5 7"
+a_str, b_str = data.split()           # ["5", "7"]
+a = int(a_str)
+b = int(b_str)
+print("Sum:", a + b)                  # 12
 ```
 
-> ⚠️ **WARNING:** If the user types something that cannot be converted (`"hello"` for `int`), the program will crash with a `ValueError`. We will learn error handling in Module 6. For now, assume correct input.
+`.split()` breaks a string into a list at spaces.
+You can then convert each piece individually.
+
+> ⚠️ **WARNING:** If the user types something that cannot
+> be converted (`"hello"` for `int`), the program will crash.
+> We’ll learn error handling in Module 6. For now, assume
+> correct input.
 
 ---
 
-## 💡 Real‑world Pattern
-In enterprise software, user input is often
-validated and cleaned before processing.
+## 💡 Real‑world Usage
+Every interactive system – from ATMs to online shops –
+uses `input()` to collect data from the user.
+The same pattern appears again and again:
 
 ```python
-# Simple order system
-product  = input("Product name: ")
-quantity = int(input("Quantity: "))
-price    = float(input("Unit price: "))
-total    = quantity * price
-print("Total cost:", total)
+name    = input("Customer name: ")
+product = input("Product: ")
+qty     = int(input("Quantity: "))
+price   = float(input("Unit price: "))
+total   = qty * price
+print(f"Thank you, {name}! Total: ${total:.2f}")
 ```
-
-Here, `product` stays a string, but the numbers
-are converted so arithmetic works.
 
 ---
 
-## 🔍 Practice Preview (for later coding)
-```python
-# Collect three pieces of information
-name = input("Your name: ")
-age  = int(input("Your age: "))
-city = input("Your city: ")
+## 🔍 Practice Preview
+You will interact with a customer order system.
 
-# Print a summary
-print("Name:", name)
-print("Age next year:", age + 1)
-print("City:", city)
+- **Easy:** Ask for a name and print a greeting.
+- **Medium:** Ask for an age, convert to `int`, print age in 10 years.
+- **Hard:** Read two numbers on one line, split them, convert to ints, and print their sum.
 
-# Try entering a float for age and see what happens
+Run the practice coach:
+```bash
+python ii_Practice_Sheets/L-03_User_Input.py
 ```
+
+Choose your level, type the script, and the engine will verify.
 
 ---
 
 ## 📌 Key Takeaway
 - `input()` always returns a **string**.
 - Convert with `int()` or `float()` to do maths.
-- The prompt is a string inside the parentheses.
-- Without conversion, `age + 1` will crash.
+- Use `.split()` to read multiple values on one line.
+- Without conversion, arithmetic on strings fails.

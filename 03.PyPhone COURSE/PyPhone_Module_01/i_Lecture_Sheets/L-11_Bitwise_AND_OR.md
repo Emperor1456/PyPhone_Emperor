@@ -1,126 +1,146 @@
 # 📘 PyPhone Emperor · Module 1  
-# 📖 L‑11 – Bitwise AND (`&`) and OR (`|`)
+# 📖 L‑11 – Bitwise AND & OR in Permission Systems
 
 ---
 
 ## 🎯 OBJECTIVE
-Learn to operate on numbers at the **bit level**
-using the bitwise AND (`&`) and OR (`|`) operators.
-These are essential for low‑level programming,
-permissions, flags, and hardware interaction.
+Learn the bitwise operators `&` (AND) and `|` (OR).
+These operators work directly on the binary
+representation of integers, treating each bit
+as a separate flag.
+They are essential for permission systems,
+low‑level data processing, and hardware control,
+but also appear in everyday programming puzzles
+and optimisations.
 
 ---
 
-## 🧱 BRICK 1 – Understanding Bits
+## 🧱 BRICK 1 – Bitwise AND (`&`)
 
-Computers store numbers in **binary** (base‑2).
-A bit is a single 0 or 1.
-A byte is 8 bits.
+The `&` operator compares two integers bit by bit.
+A bit in the result is `1` only if **both** corresponding
+bits are `1`.
 
-**Example: the number 5 in binary**
-```
-5  →  0 1 0 1   (4‑bit representation)
-      8 4 2 1   (place values: 8, 4, 2, 1)
-```
-5 = 4 + 1 → bits at positions 4 and 1 are set.
-
-### Common binary values
-```
-Decimal:  0   1   2   3   4   5   6   7
-Binary:   000 001 010 011 100 101 110 111
+```python
+a = 5   # binary: 101
+b = 3   # binary: 011
+c = a & b   # binary: 001 → decimal 1
+print(c)
 ```
 
-> 💡 **TIP:** Think of bits as light switches — 1 is ON, 0 is OFF.
+**How it works, bit by bit:**
+
+| bit of a | bit of b | result |
+|----------|----------|--------|
+| 1        | 0        | 0      |
+| 0        | 1        | 0      |
+| 1        | 1        | 1      |
+
+So `5 & 3` equals `1`.
+
+### Real‑world analogy – permission check
+
+Imagine a user has a set of permissions stored as bits:
+- Read = 4 (binary 100)
+- Write = 2 (binary 010)
+- Execute = 1 (binary 001)
+
+To check if a user has **Read** permission, you `&` their
+permissions with the Read flag. If the result is non‑zero,
+they have it.
+
+```python
+READ = 4
+user_permissions = 6   # 110 → Read + Write
+has_read = user_permissions & READ   # 6 & 4 = 4 (non‑zero → True)
+print(has_read)
+```
+
+> 💡 `&` is perfect for testing if a specific flag is set
+> inside a packed integer.
 
 ---
 
-## 🧱 BRICK 2 – Bitwise AND (`&`) and OR (`|`)
+## 🧱 BRICK 2 – Bitwise OR (`|`)
 
-### Bitwise AND `&`
-Compares each pair of bits.
-Result bit is **1 only if both input bits are 1**.
-Otherwise, 0.
+The `|` operator sets a bit in the result to `1` if
+**at least one** of the corresponding bits is `1`.
 
-```
-  5  =  1 0 1
-& 3  =  0 1 1
-─────────────
-  1  =  0 0 1
-```
 ```python
-print(5 & 3)   # 1
+a = 5   # binary: 101
+b = 3   # binary: 011
+c = a | b   # binary: 111 → decimal 7
+print(c)
 ```
 
-### Bitwise OR `|`
-Compares each pair of bits.
-Result bit is **1 if at least one input bit is 1**.
-Only 0 when both are 0.
+**How it works, bit by bit:**
 
-```
-  5  =  1 0 1
-| 3  =  0 1 1
-─────────────
-  7  =  1 1 1
-```
+| bit of a | bit of b | result |
+|----------|----------|--------|
+| 1        | 0        | 1      |
+| 0        | 1        | 1      |
+| 1        | 1        | 1      |
+
+So `5 | 3` equals `7`.
+
+### Real‑world analogy – combining permissions
+
+To **grant** a new permission to a user, you `|` their
+current permissions with the new flag.
+
 ```python
-print(5 | 3)   # 7
+READ = 4
+WRITE = 2
+user_permissions = 0
+user_permissions = user_permissions | READ    # 4
+user_permissions = user_permissions | WRITE   # 4 | 2 = 6
+print(user_permissions)   # 6 (Read + Write)
 ```
 
-> 💡 **INSIGHT:** `&` is like a strict filter — both bits must be set. `|` is generous — any set bit passes.
+> 💡 `|` is used to merge several flag values into one.
 
 ---
 
 ## 💡 Real‑world Usage
 
-### Permission flags (Unix‑style)
-```python
-READ    = 4   # binary 100
-WRITE   = 2   # binary 010
-EXECUTE = 1   # binary 001
+Bitwise operations are not just academic – they appear
+in real systems every day.
 
-# User has read + write
-user_perm = READ | WRITE   # 6  (binary 110)
+- **Linux file permissions:** `chmod 755` uses octal
+  numbers where each digit is a 3‑bit permission set.
+- **Network masks:** subnet masks use bitwise AND to
+  determine network addresses.
+- **Hardware registers:** microcontrollers use bitwise
+  operations to turn on/off specific device features.
+- **Game development:** storing multiple player states
+  in a single integer saves memory and processing.
 
-# Check if user has write
-has_write = (user_perm & WRITE) != 0
-print("Can write:", has_write)   # True
-
-# Check if user has execute
-has_exec = (user_perm & EXECUTE) != 0
-print("Can execute:", has_exec)  # False
-```
-
-### Setting and checking flags
-- Use `|` to **combine** flags.
-- Use `&` to **check** if a flag is set.
+Even if you never write low‑level code, understanding
+`&` and `|` deepens your grasp of how computers actually
+represent and manipulate data.
 
 ---
 
-## 🔍 Practice Preview (for later coding)
-```python
-# Bitwise AND
-a = 12    # binary 1100
-b = 10    # binary 1010
-print("12 & 10 =", a & b)   # 8 (binary 1000)
+## 🔍 Practice Preview
+You will compute two bitwise operations.
 
-# Bitwise OR
-print("12 | 10 =", a | b)   # 14 (binary 1110)
+- **Easy:** Print the result of `5 & 3`.
+- **Medium:** Print the result of `5 | 3`.
+- **Hard:** Print the result of `6 & 3` on the first line,
+  and `6 | 3` on the second line.
 
-# Permission system
-READ = 4
-WRITE = 2
-EXEC = 1
-
-my_perm = READ | EXEC          # 5
-print("Has READ?", (my_perm & READ) != 0)
-print("Has WRITE?", (my_perm & WRITE) != 0)
-print("Has EXEC?", (my_perm & EXEC) != 0)
+Run the practice coach:
+```bash
+python ii_Practice_Sheets/L-11_Bitwise_AND_OR.py
 ```
+
+Choose your level, type the script, and the engine will verify.
 
 ---
 
 ## 📌 Key Takeaway
-- `&` returns bits that are 1 in **both** operands.
-- `|` returns bits that are 1 in **either** operand.
-- Used for flags, permissions, and low‑level data packing.
-- Decimal numbers are automatically handled in binary by Python.
+- `&` (AND) keeps bits only where both are `1`.
+- `|` (OR) sets bits where either is `1`.
+- They are the building blocks of permission systems,
+  flags, and low‑level data packing.
+- Each operator works directly on the binary form of integers.

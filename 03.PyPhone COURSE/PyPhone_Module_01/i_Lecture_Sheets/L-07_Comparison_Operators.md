@@ -1,15 +1,17 @@
 # 📘 PyPhone Emperor · Module 1  
-# 📖 L‑07 – Comparison Operators
+# 📖 L‑07 – Comparison Operators in Business Rules
 
 ---
 
 ## 🎯 OBJECTIVE
 Learn to compare values using Python's
-comparison operators.
+six comparison operators.
 These operators return a **boolean** value:
 `True` or `False`.
 Comparison is the foundation of all
 decision‑making in programs.
+We’ll apply them to validate transactions
+and enforce business constraints.
 
 ---
 
@@ -19,107 +21,144 @@ Python provides exactly six operators to compare
 any two values. They work on numbers, strings,
 and many other types.
 
-| Operator | Meaning                  |
-|----------|--------------------------|
-| `==`     | Equal to                 |
-| `!=`     | Not equal to             |
-| `>`      | Greater than             |
-| `<`      | Less than                |
-| `>=`     | Greater than or equal to |
-| `<=`     | Less than or equal to    |
+| Operator | Meaning                  | Example        | Result  |
+|----------|--------------------------|----------------|---------|
+| `==`     | Equal to                 | `10 == 10`     | `True`  |
+| `!=`     | Not equal to             | `10 != 5`      | `True`  |
+| `>`      | Greater than             | `10 > 5`       | `True`  |
+| `<`      | Less than                | `10 < 5`       | `False` |
+| `>=`     | Greater than or equal to | `10 >= 10`     | `True`  |
+| `<=`     | Less than or equal to    | `5 <= 10`      | `True`  |
 
-**Examples with numbers:**
+### Using comparisons on numbers
+
 ```python
-print(10 == 10)    # True
-print(10 == 5)     # False
-print(10 != 5)     # True
-print(10 > 5)      # True
-print(10 < 5)      # False
-print(10 >= 10)    # True
-print(10 <= 5)     # False
+amount = 1500
+limit  = 1000
+
+print(amount > limit)    # True  – exceeds the limit
+print(amount == limit)   # False – not equal
+print(amount != limit)   # True  – different values
+print(amount >= 1500)    # True  – at least the threshold
+print(amount <= 2000)    # True  – within upper bound
 ```
 
-> 💡 **NOTE:** `==` compares value equality. Do not confuse with `=` (assignment).
-
----
-
-## 🧱 BRICK 2 – Comparing Different Types
-
 ### Comparing strings
-Strings are compared **lexicographically**
-(like a dictionary, by Unicode order).
-Capital letters come **before** lowercase letters.
+
+Strings are compared lexicographically (dictionary order),
+based on Unicode values. Capital letters come before
+lowercase letters.
 
 ```python
 print("apple" == "apple")     # True
-print("apple" == "banana")    # False
+print("apple" == "Apple")     # False – case matters
 print("apple" < "banana")     # True  (a before b)
 print("apple" > "Apple")      # True  (lowercase > uppercase)
 print("Z" < "a")              # True  (all capitals < lowercase)
 ```
 
-### Comparing variables
-```python
-age = 18
-limit = 21
-print(age >= limit)   # False
-print(age < limit)    # True
-```
+> 💡 **INSIGHT:** Use `.lower()` or `.upper()` if you need
+> case‑insensitive comparisons.
 
-### Chaining comparisons (Python‑only feature)
+---
+
+## 🧱 BRICK 2 – Chaining and Combining Comparisons
+
+### Chaining (Python‑only feature)
+
+Python lets you write a range check in one clean expression.
+
 ```python
 x = 5
-print(1 < x < 10)     # True  (same as: 1 < x and x < 10)
-print(10 < x < 20)    # False
+print(1 < x < 10)      # True  (same as: 1 < x and x < 10)
+print(10 < x < 20)     # False
 ```
 
-> 💡 **INSIGHT:** Chaining comparisons is elegant and exclusive to Python. Use it to check ranges.
+### Combining with `and`, `or`, `not`
+
+Often a business rule requires multiple conditions.
+
+```python
+amount = 500
+status = "paid"
+
+# Both conditions must be true
+is_valid = amount > 100 and status == "paid"
+print(is_valid)        # True
+
+# At least one condition must be true
+is_eligible = status == "paid" or amount > 1000
+print(is_eligible)     # True
+
+# Negate a condition
+is_empty = not (amount > 0)
+print(is_empty)        # False
+```
+
+### Full transaction validation example
+
+```python
+amount = 2500
+status = "pending"
+
+# Rule: amount must be between 10 and 5000, and status must be "paid"
+is_approved = (10 <= amount <= 5000) and status == "paid"
+print(is_approved)     # False (status is not paid)
+```
+
+> ⚠️ **WARNING:** Do not confuse `==` (equality) with `=` (assignment).
+> `if x = 5:` is a syntax error. Always use `if x == 5:`.
 
 ---
 
 ## 💡 Real‑world Usage
-Comparisons drive every business rule.
+Comparisons drive every business rule in software.
 
+**Example 1 – Fraud detection**
 ```python
-# Check if transaction amount exceeds threshold
-amount = 15000
-threshold = 10000
-is_flagged = amount > threshold
-print("Flagged:", is_flagged)
+transaction_amount = 15000
+fraud_threshold = 10000
+is_suspicious = transaction_amount > fraud_threshold
+print("Flagged:", is_suspicious)
+```
 
-# Validate a username is not empty
-username = "Emperor"
-is_valid = username != ""
-print("Valid:", is_valid)
+**Example 2 – Inventory reorder**
+```python
+current_stock = 15
+reorder_level = 20
+needs_reorder = current_stock <= reorder_level
+print("Reorder needed:", needs_reorder)
+```
+
+**Example 3 – User access control**
+```python
+user_role = "admin"
+is_admin = user_role == "admin"
+print("Access granted:", is_admin)
 ```
 
 ---
 
-## 🔍 Practice Preview (for later coding)
-```python
-a = 42
-b = 42
-c = 99
+## 🔍 Practice Preview
+You will verify some simple business rules.
 
-print("a == b:", a == b)
-print("a == c:", a == c)
-print("a != c:", a != c)
-print("a < c :", a < c)
-print("a >= c:", a >= c)
-print("a <= b:", a <= b)
+- **Easy:** Print whether `10 > 5`.
+- **Medium:** Print whether `5 == 5`.
+- **Hard:** Print whether `10 != 5 and 10 > 5 and 5 <= 10`
+  (all three conditions must be true).
 
-# String comparison
-print("'cat' < 'dog':", "cat" < "dog")
-
-# Chained comparison
-age = 18
-print("Between 13 and 19?", 13 <= age <= 19)
+Run the practice coach:
+```bash
+python ii_Practice_Sheets/L-07_Comparison_Operators.py
 ```
+
+Choose your level, type the script, and the engine will verify.
 
 ---
 
 ## 📌 Key Takeaway
 - Six operators: `==`, `!=`, `>`, `<`, `>=`, `<=`.
 - They always return `True` or `False`.
-- Strings compare alphabetically; case matters.
-- Chained comparisons are clean and Pythonic.
+- Strings compare lexicographically; case matters.
+- Chained comparisons (`1 < x < 10`) are clean and Pythonic.
+- Combine with `and`/`or`/`not` for complex business logic.

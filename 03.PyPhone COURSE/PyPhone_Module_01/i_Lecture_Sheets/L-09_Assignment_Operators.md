@@ -1,136 +1,149 @@
 # 📘 PyPhone Emperor · Module 1  
-# 📖 L‑09 – Assignment Operators
+# 📖 L‑09 – Assignment Operators in Data Updates
 
 ---
 
 ## 🎯 OBJECTIVE
-Learn how to assign values to variables
-and how to update variables using
-assignment operators.
-These are the most frequently used
-operators in all of programming.
+Learn to use Python’s assignment operators
+to store and modify values efficiently.
+Beyond the basic `=` sign, compound assignment
+operators combine arithmetic with assignment,
+allowing you to write cleaner, more concise
+code for updating business variables like
+stock levels, salaries, and account balances.
 
 ---
 
-## 🧱 BRICK 1 – Basic Assignment and `+=`, `-=`
+## 🧱 BRICK 1 – The Basic Assignment Operator `=`
 
-### Basic assignment `=`
-The equals sign puts a value into a variable.
-It does **not** mean mathematical equality.
+The equals sign `=` assigns the value on its right
+to the variable on its left.
+It is not a mathematical equality statement;
+it is an instruction to **store**.
 
 ```python
-x = 10        # x is now 10
-name = "Emperor"
-is_active = True
+x = 10          # x now holds 10
+name = "Emperor"   # name now holds "Emperor"
 ```
 
-### Add‑and‑assign `+=`
-Adds a value to the variable, then stores
-the result back in the same variable.
+You can reassign a variable to a different value,
+even of a different type, at any time.
 
 ```python
 x = 10
-x += 5        # same as: x = x + 5
-print(x)      # 15
-
-# Works with strings too
-msg = "Hello"
-msg += " World"
-print(msg)    # Hello World
+x = x + 5       # x becomes 15 (old value + 5)
 ```
 
-### Subtract‑and‑assign `-=`
-Subtracts a value from the variable.
-
-```python
-x = 20
-x -= 7        # same as: x = x - 7
-print(x)      # 13
-```
-
-> 💡 **NOTE:** Compound assignment operators are syntactic sugar — they make code shorter and often clearer.
+> 💡 **NOTE:** In Python, `=` is assignment; `==` is equality check.
+> Never confuse them.
 
 ---
 
-## 🧱 BRICK 2 – Why Use Compound Assignment
+## 🧱 BRICK 2 – Compound Assignment Operators
 
-### Cleaner, more readable code
-Instead of:
-```python
-counter = counter + 1
-total = total - discount
-```
-Write:
-```python
-counter += 1
-total -= discount
-```
+Compound operators perform an arithmetic operation
+**and** assign the result back to the same variable.
+They make your code shorter and more readable.
 
-### Enterprise example — accumulating totals
-```python
-# Track daily sales
-daily_total = 0
-daily_total += 150.00    # morning sale
-daily_total += 89.50     # afternoon sale
-daily_total += 320.00    # evening sale
-print("Daily total:", daily_total)
-```
+| Operator | Equivalent to      | Example    | Result |
+|----------|--------------------|------------|--------|
+| `+=`     | `x = x + value`    | `x += 5`   | adds 5 |
+| `-=`     | `x = x - value`    | `x -= 3`   | subtracts 3 |
+| `*=`     | `x = x * value`    | `x *= 2`   | doubles x |
+| `/=`     | `x = x / value`    | `x /= 2`   | halves x (float) |
+| `//=`    | `x = x // value`   | `x //= 3`  | floor‑divides x |
+| `%=`     | `x = x % value`    | `x %= 2`   | remainder of x÷2 |
+| `**=`    | `x = x ** value`   | `x **= 2`  | squares x |
 
-### Multiple assignments in one line
-Python allows assigning to multiple variables
-at once:
-```python
-a, b, c = 10, 20, 30
-print(a, b, c)   # 10 20 30
+### Updating business variables
 
-# Swap values in one line
-x, y = 5, 10
-x, y = y, x
-print(x, y)      # 10 5
+**Example – adjusting stock after a sale:**
+```python
+stock = 150
+sold = 4
+stock -= sold      # stock = stock - sold → 146
+print(stock)
 ```
 
-> 💡 **INSIGHT:** Swapping variables without a temporary variable is uniquely simple in Python: `x, y = y, x`.
+**Example – applying a percentage increase:**
+```python
+salary = 50000
+raise_pct = 0.10
+salary *= (1 + raise_pct)   # salary = 55000.0
+print(salary)
+```
+
+**Example – scaling a value:**
+```python
+points = 3
+points **= 2      # points = 9
+print(points)
+```
+
+**Example – integer division update:**
+```python
+y = 9
+y //= 3          # y = 3
+print(y)
+```
+
+**Example – modulus update:**
+```python
+a = 5
+a %= 2           # a = 1 (remainder of 5÷2)
+print(a)
+```
+
+These are the very patterns used in payroll
+calculations, inventory management, and
+game scoring systems.
 
 ---
 
-## 💡 Important: Variables are references
-When you do `x += 5`, Python reads the current
-value of `x`, adds 5, and makes `x` point to
-the new value. The original value is discarded.
+## 💡 Real‑world Usage
+Compound assignment operators are everywhere
+in real software because they reduce repetition
+and make the intention clear at a glance.
 
-For immutable types (numbers, strings),
-a new object is created each time you modify.
+```python
+# Inventory restock
+current_stock = 20
+delivery = 50
+current_stock += delivery   # now 70
+
+# Discount application
+price = 100
+discount = 0.15
+price *= (1 - discount)    # now 85.0
+
+# Depreciation calculation
+value = 10000
+depreciation_rate = 0.10
+value *= (1 - depreciation_rate)   # 9000.0
+```
 
 ---
 
-## 🔍 Practice Preview (for later coding)
-```python
-# Basic assignments
-score = 0
-print("Initial:", score)
+## 🔍 Practice Preview
+You will update variables using compound operators.
 
-score += 10   # earned points
-print("After bonus:", score)
+- **Easy:** Start with `x = 10`, then add 5 using `+=` and print `x`.
+- **Medium:** Start with `y = 9`, use `//=` to divide by 3 and print.
+  Then set `z = 3`, use `**=` to square it and print.
+- **Hard:** Start with `a = 5`, use `%=` to get remainder by 2 and print.
+  Then set `b = 5`, use `//=` to divide by 2 and print.
 
-score -= 3    # penalty
-print("After penalty:", score)
-
-# String accumulation
-log = ""
-log += "[INFO] System started\n"
-log += "[INFO] Processing data\n"
-log += "[WARN] Low memory\n"
-print(log)
-
-# Multiple assignment
-width, height, depth = 1920, 1080, 256
-print("Resolution:", width, "x", height)
+Run the practice coach:
+```bash
+python ii_Practice_Sheets/L-09_Assignment_Operators.py
 ```
+
+Choose your level, type the script, and the engine will verify.
 
 ---
 
 ## 📌 Key Takeaway
-- `=` assigns a value; `+=` adds and assigns; `-=` subtracts and assigns.
-- Compound operators make code cleaner.
-- Multiple assignment works in one line.
-- Variables point to values; reassigning changes the pointer.
+- `=` assigns a value; compound operators (`+=`, `-=`, `*=`, etc.) update it.
+- They make code shorter and more readable.
+- The operator works on the current value of the variable.
+- Always ensure the variable is defined before using a compound assignment.
