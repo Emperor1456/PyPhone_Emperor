@@ -1,84 +1,156 @@
-# 📘 PyPhone Emperor · Module 7
-# 📖 L‑56 – Overriding Methods
+# 📘 PyPhone Emperor · Module 7  
+# 📖 L‑56 – Overriding Methods (Tailoring Parent Behaviour)
 
 ---
 
-## 🎯 OBJECTIVE
-Learn to **override** a parent class method in a child class.
-Overriding lets you replace or extend inherited behaviour
-with a version tailored specifically to the child class,
-while still optionally calling the original parent method.
+## 🎯 OBJECTIVE  
+Master **method overriding** — redefining a parent class method in the child to specialise its behaviour. Combine with `super()` to extend instead of replace. This is how you build flexible, layered business logic.
 
 ---
 
-## 🧱 BRICK 1 – Replacing a Method Entirely
+## 🧱 BRICK 1 – Simple Override (Replacement)
 
-If a child defines a method with the exact same name as
-one in the parent, the child version **completely replaces**
-the parent version when called on a child instance.
-
+**① Child overrides parent (Easy practice)**
 ```python
 class Parent:
-    def greet(self):
-        return "Hello from Parent"
+    def show(self):
+        return 'Parent'
 
 class Child(Parent):
-    def greet(self):
-        return "Hello from Child"
+    def show(self):
+        return 'Child'
 
-p = Parent()
 c = Child()
-print(p.greet())   # Hello from Parent
-print(c.greet())   # Hello from Child
+print(c.show())   # 'Child'
 ```
+The child completely replaces the parent's `show`.
 
-The child’s `greet` has **overridden** the parent’s.
-The parent object still uses its original method.
+**② Grandchild inherits overridden method (Medium practice)**
+```python
+class GrandChild(Child):
+    pass
 
-> 💡 **INSIGHT:** Overriding is the primary way to
-> specialise behaviour in child classes.
+gc = GrandChild()
+print(gc.show())   # 'Child' — inherits Child's version
+```
+`GrandChild` doesn't define `show`, so it uses the one from `Child`.
+
+**③ Grandchild overrides again (Hard practice)**
+```python
+class GrandChild(Child):
+    def show(self):
+        return 'GrandChild'
+
+gc = GrandChild()
+print(gc.show())   # 'GrandChild'
+```
+Now `GrandChild` replaces `show` yet again.
+
+> 💡 **INSIGHT:** Overriding is the primary way to specialise behaviour in a class hierarchy. Each level can refine or completely change what a method does.
 
 ---
 
-## 🧱 BRICK 2 – Extending a Method with `super()`
+## 🧱 BRICK 2 – Extending with `super()`
 
-Often you don’t want to replace the parent method entirely —
-you want to **add** behaviour while still running the parent’s
-original code. Use `super().method()` to call the parent’s
-version.
+Often you want to **add** to the parent's behaviour, not replace it entirely.
 
+**④ Extending a greeting**
 ```python
-class Employee:
-    def __init__(self, name, salary):
-        self.name = name
-        self.salary = salary
+class Person:
+    def greet(self):
+        return 'Hello'
 
-    def details(self):
-        return f"{self.name} earns {self.salary}"
+class Employee(Person):
+    def greet(self):
+        return super().greet() + ', welcome to the team!'
 
-class Manager(Employee):
-    def __init__(self, name, salary, department):
-        super().__init__(name, salary)
-        self.department = department
-
-    def details(self):
-        base = super().details()
-        return f"{base}, manages {self.department}"
+e = Employee()
+print(e.greet())   # 'Hello, welcome to the team!'
 ```
 
-Now `Manager.details()` builds on top of
-`Employee.details()` instead of rewriting it
-from scratch.
+**⑤ Financial instrument – base tax calculation, overridden with surcharge**
+```python
+class Transaction:
+    def tax(self, amount):
+        return amount * 0.05
 
-> ⚠️ **WARNING:** Forgetting to call `super()` in
-> `__init__` when the parent does important setup
-> can cause subtle bugs — always call it when you
-> override the constructor.
+class InternationalTransaction(Transaction):
+    def tax(self, amount):
+        base = super().tax(amount)
+        return base + amount * 0.02   # additional surcharge
+```
+
+> ⚠️ **WARNING:** If you override `__init__`, call `super().__init__()` unless you intentionally want to skip the parent's setup — skipping it often leads to missing attributes.
+
+> 💡 **ADVANCED TIP – Abstract methods:** Use `@abstractmethod` from `abc` to force children to override specific methods. This is the design‑by‑contract pattern.
+
+---
+
+## 💡 Real‑world Usage
+
+**Banking – different fee calculations**
+```python
+class Account:
+    def monthly_fee(self):
+        return 5
+
+class PremiumAccount(Account):
+    def monthly_fee(self):
+        return 0   # premium accounts have no fee
+```
+
+**E‑commerce – shipping for different regions**
+```python
+class Shipping:
+    def cost(self, weight):
+        return weight * 10
+
+class InternationalShipping(Shipping):
+    def cost(self, weight):
+        return super().cost(weight) * 1.5   # 50% extra
+```
+
+**Logistics – vehicle fuel calculation**
+```python
+class Vehicle:
+    def fuel_needed(self, distance):
+        return distance / 10
+
+class Truck(Vehicle):
+    def fuel_needed(self, distance):
+        return super().fuel_needed(distance) * 1.2   # 20% more fuel
+```
+
+**HR – manager role overrides employee**
+```python
+class Employee:
+    def role(self):
+        return 'Staff'
+
+class Manager(Employee):
+    def role(self):
+        return 'Manager'
+```
+
+---
+
+## 🔍 Practice Preview
+
+| Level  | Task | Expected Output |
+|--------|------|-----------------|
+| Easy   | Define `Parent` with method `show` returning `'Parent'`. Define `Child(Parent)` overriding `show` to return `'Child'`. Create instance `c` and print `c.show()`. | `Child` |
+| Medium | Create `GrandChild(Child)` without overriding. Print `show()` – should return `'Child'`. | `Child` |
+| Hard   | Override `show` in `GrandChild` to return `'GrandChild'`. Print the result. | `GrandChild` |
+
+Run the coach:
+```bash
+python ii_Practice_Sheets/L-56_Overriding_Methods.py
+```
 
 ---
 
 ## 📌 Key Takeaway
 - Override: define a method with the same name in the child.
 - The child version replaces the parent version for that class.
-- Use `super().method()` to call the parent’s version.
-- Perfect for extending behaviour, not just replacing it.
+- `super().method()` calls the parent's version — use it to extend behaviour.
+- Each level in the hierarchy can refine or replace methods.

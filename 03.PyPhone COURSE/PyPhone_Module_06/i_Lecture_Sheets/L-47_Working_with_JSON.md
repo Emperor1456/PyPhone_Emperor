@@ -1,81 +1,131 @@
-# 📘 PyPhone Emperor · Module 6
-# 📖 L‑47 – Working with JSON
+# 📘 PyPhone Emperor · Module 6  
+# 📖 L‑47 – Working with JSON (Data Interchange Format)
 
 ---
 
-## 🎯 OBJECTIVE
-Learn to read and write **JSON** (JavaScript Object Notation),
-the universal data‑exchange format. Python’s `json` module
-converts dictionaries ↔ JSON strings and files seamlessly,
-making it essential for APIs, config files, and storage.
+## 🎯 OBJECTIVE  
+Master JSON — the universal data format — using Python's `json` module.  
+Convert dictionaries to JSON strings and files, and parse JSON back into Python objects.  
+This is the backbone of configuration storage, API communication, and data persistence.
 
 ---
 
-## 🧱 BRICK 1 – Writing JSON (`json.dump`)
+## 🧱 BRICK 1 – JSON Strings: `loads` and `dumps`
 
-Python dictionary → JSON file.
-
+**① Parse a JSON string into a dictionary (Easy practice)**
 ```python
 import json
-
-user = {
-    "name": "Emperor",
-    "age": 18,
-    "active": True,
-    "tags": ["python", "backend"]
-}
-
-with open("user.json", "w") as f:
-    json.dump(user, f, indent=4)   # indent makes it readable
+data = json.loads('{"key": "value"}')
+print(data)   # {'key': 'value'}
 ```
+`json.loads()` takes a string and returns the corresponding Python dict.
 
-**Output (user.json):**
-```json
-{
-    "name": "Emperor",
-    "age": 18,
-    "active": true,
-    "tags": ["python", "backend"]
-}
-```
-
-> 💡 **INSIGHT:** `indent=4` adds pretty‑printing, which is
-> critical for human‑readable configuration files.
-
----
-
-## 🧱 BRICK 2 – Reading JSON (`json.load`)
-
-JSON file → Python dictionary.
-
+**② Convert a dictionary to a JSON string (Medium practice)**
 ```python
 import json
+json_str = json.dumps({'name': 'Emperor'})
+print(json_str)   # {"name": "Emperor"}
+```
+`json.dumps()` serializes a Python object into a JSON string. Use `indent` for readability.
 
-with open("user.json", "r") as f:
+**③ File I/O: write a dict to file, then read it back (Hard practice)**
+```python
+import json
+# Write
+with open('data.json', 'w') as f:
+    json.dump({'age': 18}, f)
+
+# Read
+with open('data.json', 'r') as f:
     data = json.load(f)
-
-print(data["name"])     # Emperor
-print(data["age"])      # 18
+print(data)   # {'age': 18}
 ```
+`json.dump()` writes directly to a file; `json.load()` reads from a file.
 
-**Working with JSON strings directly:**
-- `json.dumps(obj)` → returns a JSON string
-- `json.loads(str)` → parses a JSON string into a dict
+> 💡 **INSIGHT:** JSON types map cleanly to Python: `dict` ↔ object, `list` ↔ array, `str` ↔ string, `int/float` ↔ number, `True/False` ↔ true/false, `None` ↔ null.
 
+---
+
+## 🧱 BRICK 2 – Business Use of JSON
+
+**④ Storing configuration**
 ```python
-json_string = '{"name": "Emperor", "age": 18}'
-user = json.loads(json_string)
-print(user["name"])
+config = {"host": "localhost", "port": 8080, "debug": True}
+with open('config.json', 'w') as f:
+    json.dump(config, f, indent=4)
 ```
 
-> ⚠️ **WARNING:** JSON only supports: `str`, `int`, `float`,
-> `bool`, `None`, `list`, `dict`. Complex Python objects
-> (e.g., `datetime`) must be converted before serialising.
+**⑤ Sending data over an API (simulated)**
+```python
+response = '{"status": "success", "balance": 1200}'
+data = json.loads(response)
+print(data['balance'])   # 1200
+```
+
+**⑥ Logging structured events**
+```python
+import json
+event = {"user": "Emperor", "action": "login", "time": "2026-07-09"}
+with open('events.json', 'a') as f:
+    f.write(json.dumps(event) + '\n')
+```
+
+> ⚠️ **WARNING:** JSON does not support tuples, sets, or complex Python objects. Convert them to lists/strings before serializing.
+
+> 💡 **ADVANCED TIP – `default` parameter:**  
+> For custom objects, provide a `default` function to `json.dumps()` to convert them to a serializable format.
+
+---
+
+## 💡 Real‑world Usage
+
+**Banking – load account data from a JSON file**
+```python
+with open('accounts.json', 'r') as f:
+    accounts = json.load(f)
+print(accounts['A100']['balance'])
+```
+
+**E‑commerce – product catalog**
+```python
+catalog = {"products": [{"id": 1, "name": "Mouse"}, {"id": 2, "name": "Keyboard"}]}
+with open('catalog.json', 'w') as f:
+    json.dump(catalog, f, indent=2)
+```
+
+**Logistics – import shipment details**
+```python
+shipment_json = '{"tracking": "TRK-123", "weight": 12.5}'
+shipment = json.loads(shipment_json)
+print(shipment['tracking'])
+```
+
+**HR – employee database export**
+```python
+employees = [{"name": "Emperor", "dept": "Eng"}, {"name": "Rahim", "dept": "Sales"}]
+with open('hr.json', 'w') as f:
+    json.dump(employees, f)
+```
+
+---
+
+## 🔍 Practice Preview
+
+| Level  | Task | Expected Output |
+|--------|------|-----------------|
+| Easy   | Parse the JSON string `'{"key":"value"}'` into a dict and print it. | `{'key': 'value'}` |
+| Medium | Convert the dict `{'name':'Emperor'}` to a JSON string and print it. | `{"name": "Emperor"}` |
+| Hard   | Write dict `{'age':18}` to a file `data.json`, then read it back and print the dict. | `{'age': 18}` |
+
+Run the coach:
+```bash
+python ii_Practice_Sheets/L-47_JSON.py
+```
 
 ---
 
 ## 📌 Key Takeaway
-- `json.dump(obj, file)` writes Python → JSON file.
-- `json.load(file)` reads JSON file → Python dict.
-- `json.dumps()` and `json.loads()` work with strings.
-- Use `indent` for readable output; JSON is the lingua franca of the web.
+- `json.loads(str)` → Python object; `json.dumps(obj)` → JSON string.
+- `json.load(file)` reads JSON from file; `json.dump(obj, file)` writes to file.
+- JSON is the standard for data interchange in web APIs, configs, and data storage.
+- Companion will use JSON for configuration and export/import of memory fragments.

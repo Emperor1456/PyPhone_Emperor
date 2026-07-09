@@ -1,13 +1,14 @@
-# 📘 PyPhone Emperor · Module 2
-# 📖 L‑14 – Basic `if` Statement
+# 📘 PyPhone Emperor · Module 2  
+# 📖 L‑14 – Basic `if` Statement in Business Decisions
 
 ---
 
 ## 🎯 OBJECTIVE
-Learn to make decisions in Python using the **`if`** statement.
-When a condition is `True`, the indented code block runs.
-When it’s `False`, the block is skipped entirely.
-This is the foundation of all intelligent programs.
+Learn to make decisions in Python using the **`if`** statement.  
+When a condition is `True`, the indented code block runs.  
+When it’s `False`, the block is skipped entirely.  
+We’ll apply this to transaction validation and grade assignment –  
+the foundation of every business rule engine.
 
 ---
 
@@ -29,72 +30,125 @@ if condition:
 **Crucial:** The indented lines must be indented **exactly the same amount** (4 spaces is the standard).  
 If you mix spaces and tabs, Python will crash.
 
-**Minimal example:**
+**Minimal business example – approve a transaction:**
 ```python
-temperature = 35
-if temperature > 30:
-    print("It's a hot day.")
+amount = 1500
+limit  = 1000
+
+if amount <= limit:
+    print("Transaction approved")
 ```
-If `temperature` is 35, the condition `35 > 30` is `True`, so the message prints.  
-If `temperature` were 25, nothing would print.
+If `amount` is 1500 and `limit` is 1000, the condition `1500 <= 1000` is `False`, so nothing prints.  
+If `amount` were 900, the message would appear.
 
 ---
 
-## 🧱 BRICK 2 – Conditions and the Flow
+## 🧱 BRICK 2 – Adding `else` for a Two‑Way Decision
 
-The condition can be:
-- A comparison (`a == b`, `x > y`, `score <= 100`)
-- A logical expression (`age >= 18 and has_license`)
-- Any value that Python treats as `True` or `False` (truthiness – covered later)
+Often you want to do one thing if the condition is true,
+and a different thing if it’s false.
+Use `else`:
 
-The **flow** of an `if` statement:
+```python
+if condition:
+    # runs when condition is True
+else:
+    # runs when condition is False
+```
+
+**Business example – validate an order:**
+```python
+x = 10   # order quantity
+if x > 5:
+    print("OK")
+else:
+    print("NO")
+```
+Here, because 10 > 5, the program prints `"OK"`.
+
+**Another example – check if a number is even:**
+```python
+num = 4
+if num % 2 == 0:
+    print("Even")
+else:
+    print("Odd")
+```
+The expression `num % 2 == 0` checks the remainder after division by 2.
+If zero, it’s even; otherwise, odd.
+
+### The flow of an `if‑else` statement:
 ```
        ┌─────────────┐
        │  condition? │
        └──────┬──────┘
           True│False
-      ┌───────┐
-      │ block │      (skip)
-      └───────┘
+      ┌───────┐   ┌───────┐
+      │ block │   │ block │
+      └───────┘   └───────┘
 ```
 
-> 💡 **INSIGHT:** The indented block can contain multiple lines, even other `if` statements (nested conditionals, which we’ll meet later).
+> 💡 **INSIGHT:** An `if` without `else` simply does nothing when the condition is false.  
+> Adding `else` ensures **something** always happens.
 
 ---
 
 ## 💡 Real‑world Usage
+
+**Transaction validation:**
 ```python
-# Bank account withdrawal check
-balance = 500
+balance  = 500
 withdraw = 300
 
 if withdraw <= balance:
     balance -= withdraw
-    print("Withdrawal successful.")
-    print("Remaining:", balance)
+    print("Withdrawal successful")
+    print("Remaining balance:", balance)
+else:
+    print("Insufficient funds")
 ```
-If `withdraw` is 300 and `balance` is 500, the condition holds, money is deducted, and the message appears.  
-If `withdraw` is 700, nothing happens – the if‑block is skipped.
+
+**Grading system (multi‑branch preview):**
+```python
+score = 75
+if score >= 90:
+    print("A")
+elif score >= 80:
+    print("B")
+elif score >= 70:
+    print("C")
+else:
+    print("F")
+```
+The `elif` (short for “else if”) lets you check multiple conditions in order.
+Only the first true branch runs. Here, `score` is 75, so "C" prints.
+
+> ⚠️ **WARNING:** The order of `if` / `elif` / `else` matters.  
+> Python stops at the **first** true condition.  
+> If you wrote `if score >= 70` first, it would print "C" even for a 95.
 
 ---
 
-## 🔍 Practice Preview (for later coding)
-```python
-age = 18
-if age >= 18:
-    print("You can vote!")
+## 🔍 Practice Preview
+You will write small decision‑making scripts.
 
-score = 85
-if score >= 90:
-    print("Grade: A")
-if score >= 80:
-    print("Grade: B")
+- **Easy:** Given `x = 10`, print `"OK"` if `x > 5`, otherwise `"NO"`.
+- **Medium:** Given `num = 4`, print `"Even"` if it’s even, `"Odd"` otherwise.
+- **Hard:** Given `score = 75`, print the letter grade:
+  `A` (>=90), `B` (>=80), `C` (>=70), else `F`.
+
+Run the practice coach:
+```bash
+python ii_Practice_Sheets/L-14_Basic_if.py
 ```
+
+Choose your level, type the script, and the engine will verify your output.
 
 ---
 
 ## 📌 Key Takeaway
-- `if condition:` starts a decision block.
-- The indented code runs **only** when the condition is `True`.
-- Use consistent spacing (4 spaces per level).
-- Conditions are built from comparisons and logical operators.
+- `if condition:` runs the indented block only when the condition is `True`.
+- Use `else` to define what happens when the condition is `False`.
+- Use `elif` for multiple conditions checked in order.
+- Always indent consistently (4 spaces).
+- Business rules are built by chaining these simple decisions.

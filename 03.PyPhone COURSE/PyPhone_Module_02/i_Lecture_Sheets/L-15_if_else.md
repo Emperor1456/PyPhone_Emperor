@@ -1,93 +1,169 @@
-# 📘 PyPhone Emperor · Module 2
-# 📖 L‑15 – `if-else`
+# 📘 PyPhone Emperor · Module 2  
+# 📖 L‑15 – `if-else` in Binary Decisions
 
 ---
 
 ## 🎯 OBJECTIVE
-Learn to handle both outcomes of a decision
-using the **`if-else`** statement.
-When the condition is `True`, the `if` block runs;
-when it’s `False`, the `else` block runs instead.
-Exactly one of the two paths executes — never both.
+Learn to use the `if-else` statement to make
+two‑way decisions in Python.
+When the condition is `True`, one block runs;
+otherwise, the `else` block runs.
+This is the backbone of every binary business rule,
+from approving orders to classifying customers.
 
 ---
 
-## 🧱 BRICK 1 – The Two‑Way Branch
+## 🧱 BRICK 1 – The `if-else` Structure
+
+An `if-else` statement gives your program exactly two paths.
 
 ```python
 if condition:
     # runs when condition is True
-    statement
 else:
     # runs when condition is False
-    statement
 ```
 
-**Example:**
+**Crucial:** Only **one** of the two blocks ever executes.
+The indentation must be consistent (4 spaces per level).
+
+**Simple business example – customer status:**
 ```python
-temperature = 28
-if temperature > 30:
-    print("Hot day")
+a = 3
+if a > 0:
+    print("A")
 else:
-    print("Not too hot")
+    print("B")
 ```
-If `temperature` is 28, `28 > 30` is `False`,
-so the `else` block executes.
+Because `3 > 0` is `True`, the program prints `"A"`.
+If `a` were `-1`, it would print `"B"`.
 
-> 💡 **INSIGHT:** `if-else` guarantees that **something** always happens — the program never falls through silently.
+**The flow:**
+```
+       ┌─────────────┐
+       │  condition? │
+       └──────┬──────┘
+          True│False
+      ┌───────┐   ┌───────┐
+      │  if   │   │ else  │
+      └───────┘   └───────┘
+```
+
+> 💡 **INSIGHT:** An `if` without `else` simply does nothing
+> when the condition is false. Adding `else` guarantees
+> that **exactly one** of the two branches executes.
 
 ---
 
-## 🧱 BRICK 2 – Real‑world Patterns
+## 🧱 BRICK 2 – Using `if-else` for Multiple Checks
 
-**① Validation**
+You can write several independent `if-else` statements
+one after another to test different conditions.
+Each is evaluated separately.
+
+**Business example – categorise a number by sign and parity:**
 ```python
-password = "secret123"
-if len(password) >= 8:
-    print("Password accepted")
+n = 8
+
+# Check parity (even or odd)
+if n % 2 == 0:
+    parity = "Even"
 else:
-    print("Password too short")
-```
+    parity = "Odd"
 
-**② Simple business logic**
-```python
-order_total = 75
-if order_total >= 50:
-    shipping = 0
+# Check sign (positive or negative)
+if n >= 0:
+    sign = "Positive"
 else:
-    shipping = 5.99
-print("Shipping:", shipping)
+    sign = "Negative"
+
+print(parity)    # Even
+print(sign)      # Positive
 ```
 
-**③ Assigning values with `if-else`**
+`n = 8` is even and non‑negative, so the output is:
+```
+Even
+Positive
+```
+
+**Another example – check a transaction limit:**
 ```python
-is_member = True
-discount = 10 if is_member else 0   # ternary (shortcut)
-```
+amount = 2500
+limit  = 2000
 
-> ⚠️ **WARNING:** The `else` block **must** be indented exactly like the `if` block. Both share the same parent.
+if amount <= limit:
+    print("Approved")
+else:
+    print("Declined")
+```
+Here, `2500 <= 2000` is `False`, so `"Declined"` prints.
+
+> ⚠️ **WARNING:** Do **not** confuse `=` (assignment) with
+> `==` (equality). An `if x = 5:` is a syntax error.
+> Always use `==` inside conditions.
 
 ---
 
-## 🔍 Practice Preview (for later coding)
-```python
-age = 16
-if age >= 18:
-    print("Adult")
-else:
-    print("Minor")
+## 💡 Real‑world Usage
 
-score = 55
-if score >= 60:
-    print("Pass")
+Every business rule that has only two possible outcomes
+is built with `if-else`.
+
+**Inventory check:**
+```python
+stock = 10
+order = 15
+
+if order <= stock:
+    print("Order fulfilled")
 else:
-    print("Fail")
+    print("Out of stock")
 ```
+
+**Credit card verification:**
+```python
+balance = 300
+purchase = 250
+
+if purchase <= balance:
+    balance -= purchase
+    print("Payment successful")
+else:
+    print("Insufficient funds")
+```
+
+**Customer tier:**
+```python
+points = 1200
+if points >= 1000:
+    print("Gold member")
+else:
+    print("Silver member")
+```
+
+---
+
+## 🔍 Practice Preview
+You will write three small decision scripts.
+
+- **Easy:** Given `a = 3`, print `"A"` if `a > 0`, otherwise `"B"`.
+- **Medium:** Given `x = -5`, print `"Positive"` if `x >= 0`, otherwise `"Negative"`.
+- **Hard:** Given `n = 8`, print `"Even"` or `"Odd"` on the first line,
+  and `"Positive"` or `"Negative"` on the second line.
+
+Run the practice coach:
+```bash
+python ii_Practice_Sheets/L-15_if_else.py
+```
+
+Choose your level, type the script, and the engine will verify your output.
 
 ---
 
 ## 📌 Key Takeaway
-- `if-else` gives a two‑way decision.
-- Exactly one block runs — never both.
-- The `else` block has no condition of its own.
-- Use for validation, branching, and clean logic.
+- `if-else` creates exactly two execution paths.
+- The `else` block runs when the `if` condition is `False`.
+- You can use multiple independent `if-else` statements to check different properties.
+- Always indent consistently and use `==` for comparisons.
+- This is the simplest and most common business rule pattern.

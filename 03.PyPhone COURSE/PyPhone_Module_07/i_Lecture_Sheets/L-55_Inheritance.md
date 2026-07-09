@@ -1,82 +1,178 @@
-# 📘 PyPhone Emperor · Module 7
-# 📖 L‑55 – Inheritance (Parent & Child Classes)
+# 📘 PyPhone Emperor · Module 7  
+# 📖 L‑55 – Inheritance (Parent & Child Classes) – Reusing Business Logic
 
 ---
 
-## 🎯 OBJECTIVE
-Learn to create new classes based on existing ones
-using **inheritance**. The child class automatically
-receives all attributes and methods of the parent,
-allowing you to reuse, extend, or modify behaviour
-without rewriting code.
+## 🎯 OBJECTIVE  
+Master **inheritance** — the mechanism that lets a child class automatically receive all attributes and methods from a parent class. This promotes code reuse and models "is‑a" relationships (a Dog is an Animal, a Cat is an Animal).
 
 ---
 
-## 🧱 BRICK 1 – Basic Inheritance
+## 🧱 BRICK 1 – Basic Inheritance and Overriding
 
-To inherit, put the parent class name in parentheses
-after the child class name.
+Define a parent class with shared behaviour, then create child classes that inherit and override.
 
+```python
+class Animal:
+    def speak(self):
+        return '?'
+
+class Dog(Animal):
+    def speak(self):
+        return 'Woof'
+```
+
+**① Dog overrides speak (Easy practice)**
+```python
+class Animal:
+    def speak(self):
+        return '?'
+
+class Dog(Animal):
+    def speak(self):
+        return 'Woof'
+
+d = Dog()
+print(d.speak())   # 'Woof'
+```
+`Dog` inherits everything from `Animal` but replaces `speak` with its own version.
+
+**② Cat overrides speak (Medium practice)**
+```python
+class Cat(Animal):
+    def speak(self):
+        return 'Meow'
+
+c = Cat()
+print(c.speak())   # 'Meow'
+```
+
+**③ Bird does NOT override – uses parent method (Hard practice)**
+```python
+class Bird(Animal):
+    pass
+
+b = Bird()
+print(b.speak())   # '?' — inherits parent's speak
+```
+`Bird` is a child with no changes; it uses `Animal`'s `speak` directly.
+
+> 💡 **INSIGHT:** Inheritance captures "is‑a" relationships. Use it when the child is a specialised version of the parent.
+
+---
+
+## 🧱 BRICK 2 – Extending with `super()`
+
+Child classes can call parent methods using `super()`, which is common in `__init__`.
+
+**④ Animal with name**
 ```python
 class Animal:
     def __init__(self, name):
         self.name = name
 
     def speak(self):
-        return "Some sound"
+        return f'{self.name} makes a sound'
 
 class Dog(Animal):
-    pass   # Dog inherits everything from Animal
+    def __init__(self, name, breed):
+        super().__init__(name)    # call parent constructor
+        self.breed = breed
 
-d = Dog("Buddy")
-print(d.name)      # Buddy
-print(d.speak())   # Some sound
+    def speak(self):
+        return f'{self.name} barks'
+
+d = Dog('Rex', 'German Shepherd')
+print(d.speak())   # 'Rex barks'
+print(d.breed)     # 'German Shepherd'
 ```
 
-Here `Dog` is the **child** (subclass) and `Animal` is
-the **parent** (superclass). `Dog` automatically has
-`__init__` and `speak` without defining them.
+**⑤ Financial hierarchy – Account and SavingsAccount**
+```python
+class Account:
+    def __init__(self, owner, balance):
+        self.owner = owner
+        self.balance = balance
 
-> 💡 **INSIGHT:** Inheritance models an **"is‑a"**
-> relationship – a Dog is an Animal.
+    def info(self):
+        return f'{self.owner}: ${self.balance}'
+
+class SavingsAccount(Account):
+    def __init__(self, owner, balance, interest_rate):
+        super().__init__(owner, balance)
+        self.interest_rate = interest_rate
+
+    def apply_interest(self):
+        self.balance += self.balance * self.interest_rate
+```
+
+> ⚠️ **WARNING:** Always call `super().__init__()` if the parent's `__init__` sets critical attributes. Forgetting it leaves the object partially uninitialised.
+
+> 💡 **ADVANCED TIP – Method Resolution Order (MRO):** Python searches for methods in a specific order; you can see it with `ClassName.__mro__`.
 
 ---
 
-## 🧱 BRICK 2 – Adding and Overriding in Child
+## 💡 Real‑world Usage
 
-The child can add new methods or override existing
-ones by redefining them.
-
+**Banking – different account types**
 ```python
-class Cat(Animal):
-    def speak(self):
-        return "Meow"          # override
+class Account:
+    def __init__(self, id, balance=0):
+        self.id = id
+        self.balance = balance
 
-    def purr(self):
-        return "Purrr"         # new method
+class CheckingAccount(Account):
+    def withdraw(self, amount):
+        self.balance -= amount
+
+class SavingsAccount(Account):
+    interest = 0.05
+    def add_interest(self):
+        self.balance *= (1 + self.interest)
 ```
 
-If the child overrides `__init__`, it can still
-call the parent's `__init__` via `super()`.
-
+**E‑commerce – product variants**
 ```python
-class Bird(Animal):
-    def __init__(self, name, can_fly):
-        super().__init__(name)   # call parent __init__
-        self.can_fly = can_fly
+class Product:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+class DigitalProduct(Product):
+    def download(self):
+        return f'Downloading {self.name}'
 ```
 
-`super()` gives access to the parent class,
-letting you reuse its logic seamlessly.
+**Logistics – vehicle types**
+```python
+class Vehicle:
+    def __init__(self, capacity):
+        self.capacity = capacity
 
-> ⚠️ **WARNING:** Python supports multiple inheritance
-> (`class C(A, B)`). Use with caution – the method
-> resolution order (MRO) can become complex.
+class Truck(Vehicle):
+    def load(self, weight):
+        return weight <= self.capacity
+```
+
+---
+
+## 🔍 Practice Preview
+
+| Level  | Task | Expected Output |
+|--------|------|-----------------|
+| Easy   | Define `Animal` with method `speak` returning `'?'`. Define `Dog(Animal)` overriding `speak` to return `'Woof'`. Create `d=Dog()` and print `d.speak()`. | `Woof` |
+| Medium | Add another subclass `Cat` overriding `speak` to return `'Meow'`. Create `c=Cat()` and print `c.speak()`. | `Meow` |
+| Hard   | Define `Bird(Animal)` that does NOT override speak. Create instance and print `speak()`. Should return `'?'`. | `?` |
+
+Run the coach:
+```bash
+python ii_Practice_Sheets/L-55_Inheritance.py
+```
 
 ---
 
 ## 📌 Key Takeaway
 - `class Child(Parent):` inherits all methods and attributes.
-- Child can add new methods or override existing ones.
-- `super().__init__(...)` calls the parent constructor.
-- Inheritance promotes code reuse and logical hierarchy.
+- Child can override (replace) methods or add new ones.
+- Use `super()` to call parent methods, especially `__init__`.
+- Inheritance promotes reuse and models natural hierarchies.

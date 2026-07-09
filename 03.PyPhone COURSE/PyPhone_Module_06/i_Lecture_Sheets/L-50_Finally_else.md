@@ -1,88 +1,169 @@
-# 📘 PyPhone Emperor · Module 6
-# 📖 L‑50 – `finally` & `else` in Exception Blocks
+# 📘 PyPhone Emperor · Module 6  
+# 📖 L‑50 – `finally` & `else` in Exception Blocks (Cleanup & Success Logic)
 
 ---
 
-## 🎯 OBJECTIVE
-Complete your exception‑handling toolkit with two
-optional but powerful clauses: `else` (runs only when
-no error occurs) and `finally` (runs no matter what).
-Together they give you surgical control over cleanup
-and success‑only logic.
+## 🎯 OBJECTIVE  
+Master the `else` and `finally` clauses of the `try` statement.  
+Use `else` for code that runs only on success, and `finally` for cleanup that must always execute — no matter what.
 
 ---
 
-## 🧱 BRICK 1 – `else` – Runs Only on Success
+## 🧱 BRICK 1 – `else` – Execute Only on Success
 
-The `else` block executes **only if** the `try` block
-completed without raising an exception.
-It’s perfect for code that should run exclusively
-when everything went right.
+The `else` block runs **only if** the `try` block completed without any exception.
 
 ```python
 try:
-    num = int(input("Number: "))
-except ValueError:
-    print("Invalid number.")
+    x = 1   # safe operation
+except:
+    pass
 else:
-    print(f"You entered {num}.")
+    print('else')   # this runs
 ```
 
-- If the user types `"abc"`, `except` runs, `else` is skipped.
-- If the user types `42`, `except` is skipped, `else` runs.
+**① Medium practice – demonstrate `else`**
+```python
+try:
+    y = 2
+except:
+    pass
+else:
+    print('else')
+```
+Output: `else`.
 
-> 💡 **INSIGHT:** Code in `else` is visually separated from
-> the `try` block, making it clearer which part depends
-> on success.
+**Why use `else`?** It separates success‑only logic from the `try` block, making it clear which code depends on the absence of errors.
 
 ---
 
-## 🧱 BRICK 2 – `finally` – Runs No Matter What
+## 🧱 BRICK 2 – `finally` – Runs Always
 
-The `finally` block executes **always** — whether an
-exception occurred or not, and even if you `return`
-or `break` inside `try`.
+The `finally` block executes **no matter what**: exception or not, and even after a `return` or `break`.
 
+```python
+try:
+    x = 1
+finally:
+    print('cleanup')   # always prints
+```
+
+**② Easy practice – demonstrate `finally`**
+```python
+try:
+    x = 1
+finally:
+    print('cleanup')
+```
+Output: `cleanup`.
+
+**③ Hard practice – combine all four clauses**
+```python
+try:
+    1 / 0
+except:
+    flow = 'except'
+else:
+    flow = 'else'
+finally:
+    flow = 'finally'
+print(flow)   # 'finally' — because finally overrides previous assignment
+```
+Output: `finally`. Notice that the `finally` block runs last and its assignment overwrites earlier ones.
+
+**④ Typical resource cleanup pattern**
 ```python
 f = None
 try:
-    f = open("data.txt", "r")
+    f = open('data.txt', 'r')
     content = f.read()
 except FileNotFoundError:
-    print("File not found.")
+    print('File missing')
 finally:
     if f:
         f.close()
-    print("Cleanup done.")
+    print('File closed')
 ```
 
-**Typical uses:**
-- Closing files or network connections.
-- Releasing locks or resources.
-- Resetting temporary states.
+> ⚠️ **WARNING:** Avoid `return` inside `finally`; it can silently override the function’s intended return value and swallow exceptions.
 
-You can combine all four: `try` → `except` → `else` → `finally`.
+> 💡 **ADVANCED TIP – `with` replaces manual `finally`:**  
+> For file handling and locks, `with` automatically handles cleanup, so you rarely need an explicit `finally` for those.
 
+---
+
+## 💡 Real‑world Usage
+
+**Banking – ensure transaction log is closed**
+```python
+f = open('tx.log', 'a')
+try:
+    f.write('withdrawal 50\n')
+except:
+    print('Write failed')
+finally:
+    f.close()
+```
+
+**E‑commerce – report generation with cleanup**
 ```python
 try:
-    result = 10 / 2
-except ZeroDivisionError:
-    print("Division by zero.")
+    generate_report()
+except Exception as e:
+    print(f'Report failed: {e}')
 else:
-    print("Result is", result)
+    print('Report generated successfully')
 finally:
-    print("Operation complete.")
+    cleanup_temp_files()
 ```
 
-> ⚠️ **WARNING:** A `return` inside `finally` overrides
-> any previous `return` or exception, which can hide bugs.
-> Use `finally` only for cleanup, not for changing the
-> function’s result.
+**Logistics – always reset the scale**
+```python
+try:
+    weight = read_scale()
+except ScaleError:
+    weight = 0
+else:
+    print(f'Weight: {weight}kg')
+finally:
+    reset_scale()
+```
+
+**HR – batch processing with final summary**
+```python
+processed = 0
+try:
+    for emp in employees:
+        update_record(emp)
+        processed += 1
+except Exception as e:
+    print(f'Error at {processed}')
+else:
+    print(f'All {processed} records updated')
+finally:
+    print('Batch job ended')
+```
+
+---
+
+## 🔍 Practice Preview
+
+| Level  | Task | Expected Output |
+|--------|------|-----------------|
+| Easy   | Use `try/finally` to print `'cleanup'` no matter what (safe operation). | `cleanup` |
+| Medium | Use `try/except/else`: set a variable and print `'else'` when no exception occurs. | `else` |
+| Hard   | Combine `try/except/else/finally` with a deliberate error (`1/0`). Ensure `'finally'` prints last. Print the final value. | `finally` |
+
+Run the coach:
+```bash
+python ii_Practice_Sheets/L-50_finally_else.py
+```
 
 ---
 
 ## 📌 Key Takeaway
-- `else` runs only when no exception occurs.
-- `finally` runs always — ideal for resource cleanup.
+- `else` runs only if no exception occurred; it separates success‑only logic.
+- `finally` runs always — perfect for resource cleanup (closing files, releasing locks).
 - Order: `try` → `except` → `else` → `finally`.
-- Keep `finally` focused on cleanup, not logic.
+- Use `finally` for cleanup, not for changing return values.
+- These clauses make your programs robust and professional.

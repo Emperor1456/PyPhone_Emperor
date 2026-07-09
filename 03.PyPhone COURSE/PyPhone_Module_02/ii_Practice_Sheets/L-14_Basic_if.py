@@ -16,7 +16,7 @@ medium = Task(
 
 hard = Task(
     description="score=75. If score>=90 print 'A', elif >=80 print 'B', elif >=70 print 'C', else 'F'.",
-    expected_output="B",
+    expected_output="C",
     level=Level.HARD,
     hints=["score=75","if score>=90: print('A')","elif score>=80: print('B')","elif score>=70: print('C')","else: print('F')"]
 )
