@@ -1,111 +1,127 @@
-# Getting Started with PyPhone Emperor
+# Getting Started with PyPhone Emperor v3.0
 
-Welcome. This guide will help you navigate the complete Python foundation course.  
-No prior experience needed — just dedication and a phone.
+Welcome, Emperor.  
+You hold the most complete full‑stack Python  
+foundation ever built on a phone.  
+10 modules, 60 lessons, one promise:  
+after this, no Python fundamental will stop you.
 
 ---
 
 ## 1. The Course at a Glance
 
-The curriculum contains **8 modules** and **66 lessons**.  
-Every lesson now includes four resources, organised in Roman‑numeral order:
+- **10 modules** – from Core Python to Capstone
+- **60 lessons** – each a single, invincible topic
+- **Practice engine** – Easy / Medium / Hard with hints
+- **Debugging sheets** – 1 broken script per lesson
+- **Review sheets** – one per module to lock mastery
+- **Capstone** – Imperial Contact Book (Python + SQLite)
 
-- **i_Lecture_Sheets/** – the concept, explained clearly.
-- **ii_Practice_Sheets/** – an interactive coach with Easy/Medium/Hard levels and hints.
-- **iii_Debugging_Sheets/** – three broken Python files that train your debugging eye.
-- **iv_Review_Sheets/** – a final consolidation task for the whole module.
-
-All lessons live inside the folder `03.PyPhone COURSE/`.
-
----
-
-## 2. How to Progress
-
-1. Open any module (e.g., `PyPhone_Module_01`).
-2. Read the **Progress_Tracker.md** to see the checklist.
-3. Start with the first lecture sheet inside `i_Lecture_Sheets/`.
-4. Once you understand the ideas, open the matching practice sheet inside `ii_Practice_Sheets/` and run it in Termux:
-   ```bash
-   cd "03.PyPhone COURSE/PyPhone_Module_01"
-   python ii_Practice_Sheets/L-01_Variables_Data_Types.py
-   ```
-5. Choose a difficulty: **1 Easy**, **2 Medium**, or **3 Hard**.
-6. Type your Python code. The engine checks your answer instantly.
-   - Stuck? Type `:hint` for a clue.
-   - Want to exit? Type `:quit`.
-7. After completing all lessons, fix the three broken scripts in `iii_Debugging_Sheets/`.
-8. Finish with the final review in `iv_Review_Sheets/` to lock in the knowledge.
-9. Move to the next module only when the Progress Tracker is fully checked.
-
----
-
-## 3. Folder Structure (Simplified)
-
+All lessons live inside:
 ```
 03.PyPhone COURSE/
-├── practice_engine.py          ← the engine that powers every practice sheet
-├── PyPhone_Module_01/
-│   ├── Progress_Tracker.md
-│   ├── i_Lecture_Sheets/
-│   ├── ii_Practice_Sheets/
-│   ├── iii_Debugging_Sheets/
-│   └── iv_Review_Sheets/
-├── PyPhone_Module_02/
-...
-└── PyPhone_Module_08/
 ```
 
-The same structure repeats for every module.
+---
+
+## 2. Module Folder Anatomy
+
+Every module follows the same rigorous layout:
+
+```
+Module_01_Python_Core/
+├── i_Lecture_Sheets/
+├── ii_Practice_Sheets/
+├── iii_Debugging_Sheets/
+├── iv_Review_Sheet/
+├── v_Solution_Sheets/
+└── Module_Progress_Tracker.md
+```
+
+- `i_Lecture_Sheets/` – deep concept (`.md`)
+- `ii_Practice_Sheets/` – interactive coach (`.py`)
+- `iii_Debugging_Sheets/` – broken code to fix
+- `iv_Review_Sheet/` – final module challenge
+- `v_Solution_Sheets/` – correct code for every task
+
+---
+
+## 3. How to Progress
+
+1. Read the lecture sheet in `i_Lecture_Sheets/`.
+2. Run the matching practice sheet in Termux:
+   ```bash
+   cd "03.PyPhone COURSE/Module_01_Python_Core"
+   python ii_Practice_Sheets/L01_Variables_Memory_Typing.py
+   ```
+3. The engine starts on **Easy**. After completing a level,  
+   you can continue to **Medium** and then **Hard**.
+4. Type your Python code. Press Enter on an empty line to submit.
+   - Stuck? Type `:hint` for a progressive clue.
+   - Want to quit? Type `:quit`.
+   - After seeing the live preview, choose `(s)ubmit`, `(e)dit`, or `(q)uit`.
+5. After the lesson, fix the broken script in `iii_Debugging_Sheets/`.
+6. Complete the `iv_Review_Sheet/` challenge.
+7. Check off the lesson in the module's `Module_Progress_Tracker.md`.
+8. Move to the next lesson.
 
 ---
 
 ## 4. Tools You Need
 
-- **Termux** (terminal) – to run Python files.
-- **Acode** (editor) – to read lecture sheets and write code.
-- **Git** – to track your progress (optional but recommended).
+- **Termux** – terminal to run Python
+- **Acode** – editor for `.md` and `.py` files
+- **Git** (optional) – track your empire’s growth
 
-Setup instructions are in `SETUP_GUIDE.md` inside `01.PyPhone PLUGIN/`.
+Everything works offline. No internet needed.
 
 ---
 
 ## 5. The Practice Engine
 
-Every practice sheet now uses a central **practice engine** (`practice_engine.py`) that:
-- Offers three difficulty levels per task.
-- Provides progressive hints on demand.
-- Executes your code in a sandbox and gives instant pass/fail feedback.
-- Works completely offline, no internet required.
+Every practice sheet uses the central engine
+(`practice_engine.py`) that:
 
-A full guide to the engine is in `01.PyPhone PLUGIN/PRACTICE_ENGINE_GUIDE.md`.
+- Offers three difficulty levels per task
+- Accepts **multi‑line code** (empty line submits)
+- Shows a **live preview** of your code and its output
+- Provides progressive hints on demand (`:hint`)
+- Executes your code in a safe sandbox
+- Gives instant pass/fail feedback
+- Tracks your attempts, hints used, and time taken
+- Saves your progress so you can resume later
 
 ---
 
 ## 6. Cheat Sheets & Notes
 
-- **04.PyPhone NOTES/** contains a one‑page cheat sheet for each module.
-- Use them for quick revision before interviews or practice.
+Quick‑revision cheat sheets live in `04.PyPhone NOTES/`
+(one per module). Use them before practice or interviews.
 
 ---
 
-## 7. The Capstone – Imperial Finance
+## 7. The Capstone – Imperial Contact Book
 
-After you conquer all 8 modules, head to `05.Final Capstone/`.  
-There you’ll find the project brief and a starter script.  
-Build a complete CLI personal finance tracker that integrates everything you’ve learned.  
-It’s your portfolio centerpiece.
+After conquering all 10 modules, head to
+`Module_10_Capstone/vi_Imperial_Contact_Book/`.
+You will build a complete CLI contact book powered by
+Python and SQLite — your first full‑stack application
+and a direct bridge to the SQLPhone course.
 
 ---
 
-## 8. Your Diploma
+## 8. Your Certificate
 
-When the capstone is done, generate your official PyPhone Emperor certificate:
+When the capstone passes all tests, generate your
+official PyPhone Emperor certificate:
 
 ```bash
 python generate_certificate.py
 ```
 
-Answer the prompts and a `GRADUATION.md` file will be created. Open it in Acode’s preview to see your name in gold.
+Follow the prompts. A beautiful **HTML diploma** will open
+in your browser, and a gold‑coloured terminal version
+will appear instantly.
 
 ---
 
@@ -113,9 +129,11 @@ Answer the prompts and a `GRADUATION.md` file will be created. Open it in Acode�
 
 Type every line yourself.  
 Never copy‑paste.  
-Understanding comes from your fingers, not from reading alone.
+Understanding comes from your fingers,
+not from reading alone.
 
 ---
 
 *Built entirely on a phone by Emperor.*  
-*Stay consistent. Stay sovereign. Finish what you start.*
+*Stay consistent. Stay sovereign.*  
+*Finish what you start.*

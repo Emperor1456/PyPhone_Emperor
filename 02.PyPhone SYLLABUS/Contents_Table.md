@@ -1,84 +1,107 @@
-# PyPhone Emperor – Complete Python Foundation
-## Table of Contents
+# ⚔️ PyPhone Emperor v3.0
+### 𝙵𝚞𝚕𝚕‑𝚂𝚝𝚊𝚌𝚔 𝙿𝚢𝚝𝚑𝚘𝚗 𝙵𝚘𝚞𝚗𝚍𝚊𝚝𝚒𝚘𝚗  
+*60 Lessons · 10 Modules · For Emperor*
 
-### Module 1 – Python Fundamentals
-1.  Variables & Data Types
-2.  Typecasting
-3.  User Input
-4.  Comments & Escape Sequences
-5.  Escape Sequences (Continued)
-6.  Advanced Arithmetic (//, %, **)
-7.  Comparison Operators
-8.  Logical Operators (and, or, not)
-9.  Assignment Operators (=, +=, -=)
-10. Compound Assignments (*=, /=, //=, %=, **=)
-11. Bitwise AND & OR
-12. Bitwise XOR & NOT
-13. Bitwise Shifts (<<, >>)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-### Module 2 – Control Flow & Loops
-14. Basic `if` Statement
-15. `if-else`
-16. `if-elif-else` Chain
-17. Nested Conditionals
-18. `match-case` (Pattern Matching)
-19. `while` Loop
-20. `for` Loop
-21. `break` and `continue`
-22. `pass` Statement
+## 🧱 **Module 1 – Python Core** `7 lessons`
+| | |  
+|:--- |:--- |  
+| 🟢 L01 | Variables, Memory & Dynamic Typing |  
+| 🟢 L02 | Numeric Types, Operators & Casting |  
+| 🟢 L03 | Strings – Indexing, Slicing & Immutability |  
+| 🟢 L04 | String Methods & f‑strings |  
+| 🟢 L05 | User Input, CLI Arguments & sys.argv |  
+| 🟢 L06 | Boolean Logic, Truthiness & is vs == |  
+| 🟢 L07 | None, Optional Typing & Sentinels |  
 
-### Module 3 – Strings & Lists
-23. String Indexing & Slicing
-24. String Methods
-25. List Creation & Indexing
-26. List Methods
-27. List Slicing & Comprehensions
-28. Iterating Through Lists
+## 🔀 **Module 2 – Control Flow** `5 lessons`
+| | |  
+|:--- |:--- |  
+| 🔵 L08 | if, elif, else – Business Rules |  
+| 🔵 L09 | Nested Conditionals & match‑case |  
+| 🔵 L10 | while Loops – Sentinel Repetition |  
+| 🔵 L11 | for Loops, range(), enumerate(), zip() |  
+| 🔵 L12 | Loop Control – break, continue, pass |  
 
-### Module 4 – Functions & Scope
-29. Defining a Function (`def`)
-30. Parameters & Arguments
-31. Return Values
-32. Default Parameters
-33. `*args` & `**kwargs`
-34. Local vs Global Scope (LEGB Rule)
-35. Lambda Functions
-36. Recursion
+## 📋 **Module 3 – Lists & Tuples** `6 lessons`
+| | |  
+|:--- |:--- |  
+| 🟠 L13 | List Creation, Indexing & Mutability |  
+| 🟠 L14 | List Methods – Add, Remove, Sort |  
+| 🟠 L15 | List Slicing & Slice Assignment |  
+| 🟠 L16 | List Comprehension & Generator Expressions |  
+| 🟠 L17 | Tuples – Immutability, Packing, Unpacking |  
+| 🟠 L18 | Sequence Comparison & zip() Deep Dive |  
 
-### Module 5 – Dictionaries, Tuples & Sets
-37. Dictionary Creation & Key‑Value Pairs
-38. Accessing & Modifying Dictionaries
-39. Dictionary Methods
-40. Iterating Through Dictionaries
-41. Tuples – Immutable Sequences
-42. Set – Unordered Unique Elements
-43. Set Operations
+## 📖 **Module 4 – Dictionaries & Sets** `5 lessons`
+| | |  
+|:--- |:--- |  
+| 🟣 L19 | Dictionary – Key‑Value Pairs & Hash Tables |  
+| 🟣 L20 | Dictionary Methods, Iteration & Counting |  
+| 🟣 L21 | Nested Dictionaries & defaultdict |  
+| 🟣 L22 | Sets – Uniqueness, Membership, Operations |  
+| 🟣 L23 | dataclass & namedtuple – Clean Data |  
 
-### Module 6 – File Handling & Exceptions
-44. Opening & Reading Files
-45. Writing to Files
-46. Appending to Files
-47. Working with JSON
-48. Introduction to Exceptions (`try`, `except`)
-49. Handling Multiple Exceptions
-50. `finally` & `else` in Exception Blocks
+## 🔧 **Module 5 – Functions & Scope** `8 lessons`
+| | |  
+|:--- |:--- |  
+| 🟡 L24 | def – Functions, Docstrings, Type Hints |  
+| 🟡 L25 | Parameters, Arguments & __name__ == "__main__" |  
+| 🟡 L26 | Return Values & Early Return Pattern |  
+| 🟡 L27 | Default Parameters & Mutable Pitfall |  
+| 🟡 L28 | *args, **kwargs & Unpacking |  
+| 🟡 L29 | LEGB – Local, Enclosing, Global, Built‑in |  
+| 🟡 L30 | Lambda, map(), filter(), sorted(key=) |  
+| 🟡 L31 | Recursion & Memoization |  
 
-### Module 7 – Object‑Oriented Programming
-51. Classes & Objects
-52. `__init__` Method (Constructor)
-53. Instance Methods & `self`
-54. Class Variables vs Instance Variables
-55. Inheritance (Parent & Child Classes)
-56. Overriding Methods
-57. Special Methods (`__str__`, `__repr__`, `__len__`)
-58. Property Decorators (`@property`)
+## 🛡️ **Module 6 – Error Handling & Debugging** `4 lessons`
+| | |  
+|:--- |:--- |  
+| 🔴 L32 | try/except – Specific Exceptions |  
+| 🔴 L33 | raise, Custom Exceptions & Chaining |  
+| 🔴 L34 | else, finally & Complete Cleanup |  
+| 🔴 L35 | Debugging with pdb & Logging |  
 
-### Module 8 – Advanced Python
-59. Advanced List & Dictionary Comprehensions
-60. Generator Expressions & `yield`
-61. Decorators (Basic)
-62. Error Handling Best Practices
-63. `try-except-else-finally` Review
-64. Working with CSV Files (`csv` module)
-65. Virtual Environments in Termux
-66. Introduction to Testing (`assert`, `unittest`)
+## 📁 **Module 7 – File I/O, JSON & CSV** `5 lessons`
+| | |  
+|:--- |:--- |  
+| ⚪ L36 | Reading Text Files – open, read, readlines |  
+| ⚪ L37 | Writing & Appending – write, Context Managers |  
+| ⚪ L38 | CSV – csv.reader, DictReader, csv.writer |  
+| ⚪ L39 | JSON – load, dump, loads, dumps & Schema |  
+| ⚪ L40 | pathlib – Modern File Path Handling |  
+
+## 🏗️ **Module 8 – OOP for ORMs** `8 lessons`
+| | |  
+|:--- |:--- |  
+| 🟤 L41 | Classes, Objects & __init__ |  
+| 🟤 L42 | Instance Methods, self & State |  
+| 🟤 L43 | Class Variables vs Instance Variables |  
+| 🟤 L44 | Inheritance & super() |  
+| 🟤 L45 | Method Overriding & Polymorphism |  
+| 🟤 L46 | Special Methods – __str__, __repr__, __len__ |  
+| 🟤 L47 | @property, Setters & Getters |  
+| 🟤 L48 | Enum – Database Constants |  
+
+## 🚀 **Module 9 – Modern Python & Tools** `9 lessons`
+| | |  
+|:--- |:--- |  
+| ⚡ L49 | Modules & import (math, random, etc.) |  
+| ⚡ L50 | Virtual Environments & pip freeze |  
+| ⚡ L51 | requests – HTTP & APIs |  
+| ⚡ L52 | Environment Variables & .env |  
+| ⚡ L53 | datetime & time Deep Dive |  
+| ⚡ L54 | Generator Expressions & yield |  
+| ⚡ L55 | Decorators – Wrapping Functions |  
+| ⚡ L56 | Asynchronous Python – async/await Basics |  
+| ⚡ L57 | Reusable DB Connection Helper |  
+
+## 👑 **Module 10 – Capstone** `3 lessons`
+| | |  
+|:--- |:--- |  
+| 💎 L58 | Project Architecture & Design |  
+| 💎 L59 | Full CRUD – Python + SQLite |  
+| 💎 L60 | Testing, Documentation & Packaging |  
+
+━━━━━━━━━━**✦ For Emperor ✦**━━━━━━━━━━

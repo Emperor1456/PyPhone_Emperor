@@ -114,27 +114,35 @@ All course materials are now inside `~/PyPhone_Emperor/`.
 
 ---
 
-## 8. Understanding the New Course Structure (v2.0)
-Inside each module folder (e.g., `03.PyPhone COURSE/PyPhone_Module_01/`) you will find:
+## 8. Understanding the Course Structure (v3.0)
+The entire course lives inside `03.PyPhone COURSE/`.  
+Inside, you’ll find:
 
-- **`i_Lecture_Sheets/`** – Markdown lesson files (read in Acode).
-- **`ii_Practice_Sheets/`** – Python practice coaches powered by the **interactive engine**.
-- **`iii_Debugging_Sheets/`** – Three broken Python scripts per module that you must fix.
-- **`iv_Review_Sheets/`** – A final review task to lock in the whole module.
+- `practice_engine.py` – the interactive engine that powers every practice sheet
+- `debug_engine.py` – the engine for debugging challenges
+- 10 module folders (e.g., `Module_01_Python_Core`)
+- Each module contains:
+  - `i_Lecture_Sheets/` – Markdown lessons (read in Acode)
+  - `ii_Practice_Sheets/` – Python practice coaches (Easy/Medium/Hard)
+  - `iii_Debugging_Sheets/` – one broken script per lesson to fix
+  - `iv_Review_Sheet/` – final module capstone (`.md` brief + `.py` practice)
+  - `v_Solution_Sheets/` – correct code for every practice task
+  - `Module_Progress_Tracker.md` – checklist for the module
 
-The engine file **`practice_engine.py`** lives in `03.PyPhone COURSE/` and is used by every practice sheet automatically.
+Root side files: `GETTING_STARTED.md`, `README.md`, `SETUP_GUIDE.md`
 
 ---
 
 ## 9. The Interactive Practice Engine
-Every practice sheet now offers:
+Every practice sheet offers:
 
 - **Three difficulty levels:** Easy, Medium, Hard. Choose at the start.
-- **Progressive hints:** Type `:hint` at any time to get a clue.
+- **Multi‑line input:** write your code, empty line to submit.
+- **Live preview:** see your code and its output before submitting.
+- **Progressive hints:** Type `:hint` to get a clue.
 - **Instant verification:** Your code is executed and checked immediately.
-- **Sandbox safety:** Each run is isolated – no risk to your files.
-
-A full guide is available in `01.PyPhone PLUGIN/PRACTICE_ENGINE_GUIDE.md`.
+- **Mistake tracking:** the engine shows what you got wrong so you learn.
+- **Auto‑progress:** after completing a level, you can continue to the next.
 
 ---
 
@@ -146,23 +154,23 @@ A full guide is available in `01.PyPhone PLUGIN/PRACTICE_ENGINE_GUIDE.md`.
 - Switch to Termux, navigate to the module folder:
 
 ```bash
-cd ~/PyPhone_Emperor/03.PyPhone\ COURSE/PyPhone_Module_01
-python ii_Practice_Sheets/L-01_Variables_Data_Types.py
+cd ~/PyPhone_Emperor/03.PyPhone\ COURSE/Module_01_Python_Core
+python ii_Practice_Sheets/L01_Variables_Memory_Typing.py
 ```
 
-- Choose a level (1‑3).
+- The engine presents Easy first; after success, you can continue to Medium and Hard.
 - Type your Python code.  
   - Use `:hint` if stuck.
   - Use `:quit` to exit early.
-- The engine will tell you ✅ or ❌ immediately.
+- The engine shows a live preview, then you submit with `(s)ubmit`, edit with `(e)dit`, or quit with `(q)uit`.
 
 ### 10.3. Debug Broken Code
-- After finishing all practice sheets, open the files in `iii_Debugging_Sheets/`.
-- Each contains a deliberate mistake. Find the error, fix it, and run the corrected script.
+- After the practice sheet, open the matching file in `iii_Debugging_Sheets/`.
+- Run it to see the error, fix the code, and re‑run until the debug engine congratulates you.
 
 ### 10.4. Module Review
-- Complete the final review challenge in `iv_Review_Sheets/` (re‑run the Hard levels without hints).
-- Mark the `Progress_Tracker.md` in the module root as complete.
+- Complete the final review challenge in `iv_Review_Sheet/` (run the `.py` file).
+- Mark the lesson as complete in the module's `Module_Progress_Tracker.md`.
 
 ---
 
@@ -172,16 +180,16 @@ After completing a lesson or a module:
 ```bash
 cd ~/PyPhone_Emperor
 git add .
-git commit -m "Completed Module 01 – Python Fundamentals"
+git commit -m "Completed Module 01 – Python Core"
 git push origin main
 ```
 
 ---
 
-## 12. The Capstone – Imperial Finance
-After you finish all 8 modules, head to `05.Final Capstone/`.  
-You’ll find the project brief (`IMPERIAL_FINANCE_BRIEF.md`) and a starter script (`imperial_finance.py`).  
-Build a complete CLI personal finance tracker that integrates every skill from the course.
+## 12. The Capstone – Imperial Contact Book
+After you finish all 10 modules, head to  
+`Module_10_Capstone/vi_Imperial_Contact_Book/`.  
+Build a complete CLI contact book backed by Python and SQLite – your first full‑stack application, and a direct bridge to the SQLPhone course.
 
 ---
 
@@ -192,12 +200,13 @@ Once the capstone is complete, generate your personalized PyPhone Emperor certif
 python generate_certificate.py
 ```
 
-Answer the prompts and a `GRADUATION.md` file will be created. Open it in Acode’s preview to see your name in gold.
+Answer the prompts. A stunning HTML diploma will open in your browser, and a gold‑coloured terminal version will appear instantly.
 
 ---
 
-## 14. Learning Method: Two Bricks at a Time
-Each lesson introduces exactly two new concepts. You type the code, run it, understand it, and only then move forward.  
+## 14. Learning Method: One Topic, Total Mastery
+Each lesson covers exactly one concept – but to an invincible depth.  
+You type the code, understand the mental model, solve the hard tasks, and only then move forward.  
 This builds deep, lasting knowledge.
 
 ---
@@ -209,12 +218,12 @@ This builds deep, lasting knowledge.
 - **Push rejected** – If the remote has commits you don’t, use `git push origin main --force` only if you’re sure.
 - **`input()` keyboard doesn’t appear** – Tap the Termux screen once to focus.
 - **`python: command not found`** – Use `python3` instead, or reinstall `python`.
-- **`ModuleNotFoundError: No module named 'practice_engine'`** – Ensure you’re running the practice sheet from the module folder (e.g., `PyPhone_Module_01`) and that `practice_engine.py` is in `03.PyPhone COURSE/`.
+- **`ModuleNotFoundError: No module named 'practice_engine'`** – Ensure you’re running the practice sheet from its own module folder and that `practice_engine.py` is in `03.PyPhone COURSE/`.
 
 ---
 
 ## 16. You’re Ready
-Open `PyPhone_Module_01`, start with `i_Lecture_Sheets/L-01_Variables_Data_Types.md`, then run the matching practice coach.  
+Open `Module_01_Python_Core`, start with `i_Lecture_Sheets/L01_Variables_Memory_Typing.md`, then run the matching practice coach.  
 Type every line. Commit every lesson. Build your empire.
 
 *Stay consistent. Stay sovereign. Start coding.*  

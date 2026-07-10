@@ -1,0 +1,46 @@
+# ── Phone‑first Git ignore ───────────────────
+# Never commit these to your empire's repository.
+
+# Virtual environments
+.venv/
+venv/
+myenv/
+env/
+
+# Python cache & compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Practice engine progress (personal)
+.progress_*.json
+
+# SQLite databases (local data)
+*.db
+*.sqlite3
+
+# IDE / editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files (macOS / Linux)
+.DS_Store
+Thumbs.db
+
+# Temporary & log files
+*.log
+*.tmp
+*.temp
+
+# Environment secrets
+.env
+.env.*
+
+# Build / distribution
+build/
+dist/
+*.egg-info/

@@ -1,11 +1,7 @@
 # ── Phone‑first Git safety ──────────────────
-# Force consistent line endings and prevent
-# file‑mode & encoding corruption on Android.
-
-# Default: auto‑detect text files, use LF
 *       text=auto
 
-# Explicitly mark source code as text
+# Source code
 *.py    text
 *.md    text
 *.txt   text
@@ -13,6 +9,10 @@
 *.yml   text
 *.yaml  text
 *.toml  text
+
+# Data files (track as text if they are human‑readable)
+*.csv   text
+*.log   text
 
 # Binary files – never touch line endings
 *.png   binary
@@ -27,8 +27,11 @@
 *.woff  binary
 *.woff2 binary
 
-# Keep shell scripts with LF only
+# SQLite databases are binary
+*.db    binary
+
+# Shell scripts – LF only
 *.sh    text eol=lf
 
-# Windows batch files (rare on phone, safe to include)
+# Windows batch files (rare)
 *.bat   text eol=crlf
